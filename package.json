@@ -1,0 +1,117 @@
+{
+  "name": "nexo-editor",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "./dist/index.umd.js",
+  "module": "./dist/index.es.js",
+  "types": "./dist/types/index.d.ts",
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.es.js",
+      "types": "./dist/types/index.d.ts"
+    },
+    "./dist/style.css": "./dist/index.css"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/",
+    "tag": "latest",
+    "directory": "dist"
+  },
+  "homepage": "https://github.com/kanakkholwal/nexo-editor#readme",
+  "repository": "https://github.com/kanakkholwal/nexo-editor",
+  "bugs": "https://github.com/kanakkholwal/nexo-editor/issues",
+  "author": "Kanak Kholwal (@kanakkholwal)",
+  "keywords": [
+    "Nexo MDX Editor",
+    "Markdown editor",
+    "React component",
+    "TypeScript support",
+    "native textarea accessibility",
+    "full markdown support",
+    "UI control",
+    "Shadcn UI components",
+    "tailwind theme",
+    "nexo-editor",
+    "register plugins",
+    "MDXEditor usage",
+    "React Markdown editor",
+    "nexo-editor package",
+    "React MDX editor"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build && node ./clean-up.js",
+    "clean": "node ./clean-up.js",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview",
+    "changeset": "changeset",
+    "version": "changeset version",
+    "release": "npm run build && changeset publish"
+  },
+  "dependencies": {
+    "@floating-ui/react": "^0.27.15",
+    "@radix-ui/react-dropdown-menu": "^2.1.15",
+    "@radix-ui/react-popover": "^1.1.14",
+    "@tailwindcss/vite": "^4.1.11",
+    "@tiptap/extension-highlight": "^3.0.9",
+    "@tiptap/extension-horizontal-rule": "^3.0.9",
+    "@tiptap/extension-image": "^3.0.9",
+    "@tiptap/extension-list": "^3.0.9",
+    "@tiptap/extension-subscript": "^3.0.9",
+    "@tiptap/extension-superscript": "^3.0.9",
+    "@tiptap/extension-text-align": "^3.0.9",
+    "@tiptap/extension-typography": "^3.0.9",
+    "@tiptap/extensions": "^3.0.9",
+    "@tiptap/pm": "^3.0.9",
+    "@tiptap/react": "^3.0.9",
+    "@tiptap/starter-kit": "^3.0.9",
+    "@tiptap/static-renderer": "^3.0.9",
+    "classnames": "^2.5.1",
+    "clsx": "^2.1.1",
+    "lodash.throttle": "^4.1.1",
+    "lucide-react": "latest",
+    "nanoid": "^5.1.5",
+    "react-hotkeys-hook": "^5.1.0",
+    "tslib": "^2.8.1"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.29.5",
+    "@tailwindcss/postcss": "^4.1.11",
+    "@tailwindcss/typography": "^0.5.16",
+    "@types/lodash.throttle": "^4.1.9",
+    "@types/node": "^24.2.0",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "@vitejs/plugin-react-swc": "^3.11.0",
+    "eslint": "^9.32.0",
+    "eslint-import-resolver-typescript": "^4.4.4",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.20",
+    "postcss": "^8.5.6",
+    "prettier": "^3.6.2",
+    "prettier-plugin-tailwindcss": "^0.6.14",
+    "react": "latest",
+    "react-dom": "latest",
+    "sass-embedded": "^1.89.2",
+    "tailwind-merge": "^3.3.1",
+    "tailwindcss": "^4.1.11",
+    "tailwindcss-animate": "^1.0.7",
+    "terser": "^5.43.1",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "latest",
+    "vite": "^7.0.6",
+    "vite-plugin-lib-inject-css": "^2.2.2"
+  },
+  "peerDependencies": {
+    "vite-plugin-dts": "^4.0.0-beta.2"
+  }
+}
