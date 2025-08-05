@@ -2,8 +2,8 @@
 
 A Rich Text editor based on @tiptap/react
 
-[![npm version](https://badge.fury.io/js/nexo-mdx.svg)](https://www.npmjs.com/package/nexo-mdx)
-[![NPM Downloads](https://img.shields.io/npm/dy/nexo-mdx)](https://www.npmjs.com/package/nexo-mdx)
+[![npm version](https://badge.fury.io/js/nexo-editor.svg)](https://www.npmjs.com/package/nexo-editor)
+[![NPM Downloads](https://img.shields.io/npm/dy/nexo-editor)](https://www.npmjs.com/package/nexo-editor)
 
 ## Features
 

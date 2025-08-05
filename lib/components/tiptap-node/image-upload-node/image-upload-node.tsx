@@ -1,12 +1,13 @@
 "use client"
 
-import * as React from "react"
-import type { NodeViewProps } from "@tiptap/react"
-import { NodeViewWrapper } from "@tiptap/react"
-import { Button } from "@/components/tiptap-ui-primitive/button"
 import { CloseIcon } from "@/components/tiptap-icons/close-icon"
 import "@/components/tiptap-node/image-upload-node/image-upload-node.scss"
+import { Button } from "@/components/tiptap-ui-primitive/button"
 import { isValidPosition } from "@/lib/tiptap-utils"
+import type { NodeViewProps } from "@tiptap/react"
+import { NodeViewWrapper } from "@tiptap/react"
+import { nanoid } from "nanoid"
+import * as React from "react"
 
 export interface FileItem {
   /**
@@ -95,7 +96,7 @@ function useFileUpload(options: UploadOptions) {
     }
 
     const abortController = new AbortController()
-    const fileId = crypto.randomUUID()
+    const fileId = nanoid()
 
     const newFileItem: FileItem = {
       id: fileId,
