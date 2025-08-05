@@ -28,8 +28,8 @@ export default defineConfig({
     outDir: 'dist',
     copyPublicDir: false,
     lib: {
-      entry: resolve(__dirname, "./lib/index.ts"),
-      name: "nexo-mdx",
+      entry: resolve(__dirname, "./lib/index.tsx"),
+      name: "nexo-editor",
       fileName: (format) => `index.${format}.js`,
       formats: ['es'],
     },
