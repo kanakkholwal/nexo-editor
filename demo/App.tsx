@@ -1,9 +1,9 @@
 import "@/style.css";
-import { Content, JSONContent } from "@tiptap/react";
+import { Content } from "@tiptap/react";
 import { useState } from "react";
-import { extensions, NexoEditor } from "../lib/editor";
-import { renderToMarkdown } from "../lib/utils";
-
+import { NexoEditor } from "../lib/editor";
+import { handleImageUpload, MAX_FILE_SIZE } from "../lib/utils";
+import demoContent from "./data/content.json";
 
 
 
@@ -24,22 +24,26 @@ export default function App() {
     });
 
 
-    return <div className="w-full max-w-7xl mx-auto my-20 p-5 md:p-24">
-        <div className="text-center text-2xl font-bold mb-10">
-            Nexo  Editor
-
+    return <div className="wrapper">
+        <div className="header">
+            Nexo Editor
+            <button className="tiptap-button" onClick={() => setContent(demoContent)}>
+                Load Demo Content
+            </button>
         </div>
         <NexoEditor
             content={content}
             onChange={(content) => setContent(content)}
+            ssr={false}
+            imageUploadOptions={{
+                 accept: "image/*",
+                            maxSize: MAX_FILE_SIZE,
+                            limit: 3,
+                            onError: (error) => console.error("Upload failed:", error),
+                            upload: handleImageUpload,
+            }}
         />
-        <div className="text-center mt-10">
-            {renderToMarkdown({
-                content: content as JSONContent,
-                extensions: extensions
-                
-            })}
-            </div>
+
 
     </div>
 }

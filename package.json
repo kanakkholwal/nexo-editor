@@ -1,6 +1,6 @@
 {
   "name": "nexo-editor",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "type": "module",
   "main": "./dist/index.umd.js",
   "module": "./dist/index.es.js",
@@ -26,6 +26,10 @@
       "import": "./dist/editor.es.js",
       "types": "./dist/types/editor.d.ts"
     },
+    "./extensions": {
+      "import": "./dist/extensions.es.js",
+      "types": "./dist/types/extensions.d.ts"
+    },
     "./utils": {
       "import": "./dist/utils.es.js",
       "types": "./dist/types/utils.d.ts"
@@ -40,6 +44,7 @@
     "build": "npm run clean && npm run build:all && npm run clean",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
+    "dev": "vite",
     "changeset": "changeset",
     "version": "changeset version",
     "release": "npm run build && changeset publish"
@@ -89,6 +94,7 @@
     "@tiptap/react": "^3.0.9",
     "@tiptap/starter-kit": "^3.0.9",
     "@tiptap/static-renderer": "^3.0.9",
+    "lodash.isequal": "^4.5.0",
     "lodash.throttle": "^4.1.1",
     "nanoid": "^5.1.5",
     "react-hotkeys-hook": "^5.1.0",
@@ -96,6 +102,7 @@
   },
   "devDependencies": {
     "@changesets/cli": "^2.29.5",
+    "@types/lodash.isequal": "^4.5.8",
     "@types/lodash.throttle": "^4.1.9",
     "@types/node": "^24.2.0",
     "@types/react": "latest",

@@ -196,6 +196,7 @@
         padding: 0.5rem;
         background-color: var(--tiptap-image-upload-icon-bg);
         border-radius: var(--tt-radius-lg, 0.75rem);
+        aspect-ratio: 1;
 
         svg {
           width: 0.875rem;

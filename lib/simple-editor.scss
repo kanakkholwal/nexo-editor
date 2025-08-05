@@ -18,13 +18,7 @@ body {
   padding: 0;
 }
 
-html,
-body,
-#root,
-#app {
-  height: 100%;
-  background-color: var(--tt-bg-color);
-}
+
 
 ::-webkit-scrollbar {
   width: 0.25rem;
@@ -61,6 +55,7 @@ body,
   display: flex;
   flex-direction: column;
   flex: 1;
+  white-space: pre-wrap;
 }
 
 .simple-editor-content .tiptap.ProseMirror.simple-editor {
@@ -72,4 +67,7 @@ body,
   .simple-editor-content .tiptap.ProseMirror.simple-editor {
     padding: 1rem 1.5rem 30vh;
   }
+}
+.ProseMirror pre {
+    white-space: pre-wrap;
 }

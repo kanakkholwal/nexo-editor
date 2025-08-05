@@ -1,75 +1,64 @@
-import { Content, EditorContent, EditorContext, useEditor } from "@tiptap/react"
-import * as React from "react"
+import { Content, EditorContent, EditorContext, Extensions, useEditor } from "@tiptap/react";
+import isEqual from 'lodash.isequal';
+import * as React from "react";
 
-// --- Tiptap Core Extensions ---
-import { Highlight } from "@tiptap/extension-highlight"
-import { Image } from "@tiptap/extension-image"
-import { TaskItem, TaskList } from "@tiptap/extension-list"
-import { Subscript } from "@tiptap/extension-subscript"
-import { Superscript } from "@tiptap/extension-superscript"
-import { TextAlign } from "@tiptap/extension-text-align"
-import { Typography } from "@tiptap/extension-typography"
-import { Selection } from "@tiptap/extensions"
-import { StarterKit } from "@tiptap/starter-kit"
 // --- UI Primitives ---
-import { Button } from "@/components/tiptap-ui-primitive/button"
-import { Spacer } from "@/components/tiptap-ui-primitive/spacer"
+import { Button } from "@/components/tiptap-ui-primitive/button";
+import { Spacer } from "@/components/tiptap-ui-primitive/spacer";
 import {
   Toolbar,
   ToolbarGroup,
   ToolbarSeparator,
-} from "@/components/tiptap-ui-primitive/toolbar"
+} from "@/components/tiptap-ui-primitive/toolbar";
 
 // --- Tiptap Node ---
-import "@/components/tiptap-node/blockquote-node/blockquote-node.scss"
-import "@/components/tiptap-node/code-block-node/code-block-node.scss"
-import "@/components/tiptap-node/heading-node/heading-node.scss"
-import { HorizontalRule } from "@/components/tiptap-node/horizontal-rule-node/horizontal-rule-node-extension"
-import "@/components/tiptap-node/horizontal-rule-node/horizontal-rule-node.scss"
-import "@/components/tiptap-node/image-node/image-node.scss"
-import { ImageUploadNode } from "@/components/tiptap-node/image-upload-node/image-upload-node-extension"
-import "@/components/tiptap-node/list-node/list-node.scss"
-import "@/components/tiptap-node/paragraph-node/paragraph-node.scss"
+import "@/components/tiptap-node/blockquote-node/blockquote-node.scss";
+import "@/components/tiptap-node/code-block-node/code-block-node.scss";
+import "@/components/tiptap-node/heading-node/heading-node.scss";
+import "@/components/tiptap-node/list-node/list-node.scss";
+import "@/components/tiptap-node/paragraph-node/paragraph-node.scss";
 
 // --- Tiptap UI ---
-import { BlockquoteButton } from "@/components/tiptap-ui/blockquote-button"
-import { CodeBlockButton } from "@/components/tiptap-ui/code-block-button"
+import { ImageUploadNode, ImageUploadNodeOptions } from "@/components/tiptap-node/image-upload-node/image-upload-node-extension";
+import { BlockquoteButton } from "@/components/tiptap-ui/blockquote-button";
+import { CodeBlockButton } from "@/components/tiptap-ui/code-block-button";
 import {
   ColorHighlightPopover,
   ColorHighlightPopoverButton,
   ColorHighlightPopoverContent,
-} from "@/components/tiptap-ui/color-highlight-popover"
-import { HeadingDropdownMenu } from "@/components/tiptap-ui/heading-dropdown-menu"
-import { ImageUploadButton } from "@/components/tiptap-ui/image-upload-button"
+} from "@/components/tiptap-ui/color-highlight-popover";
+import { HeadingDropdownMenu } from "@/components/tiptap-ui/heading-dropdown-menu";
+import { ImageUploadButton } from "@/components/tiptap-ui/image-upload-button";
 import {
   LinkButton,
   LinkContent,
   LinkPopover,
-} from "@/components/tiptap-ui/link-popover"
-import { ListDropdownMenu } from "@/components/tiptap-ui/list-dropdown-menu"
-import { MarkButton } from "@/components/tiptap-ui/mark-button"
-import { TextAlignButton } from "@/components/tiptap-ui/text-align-button"
-import { UndoRedoButton } from "@/components/tiptap-ui/undo-redo-button"
+} from "@/components/tiptap-ui/link-popover";
+import { ListDropdownMenu } from "@/components/tiptap-ui/list-dropdown-menu";
+import { MarkButton } from "@/components/tiptap-ui/mark-button";
+import { TextAlignButton } from "@/components/tiptap-ui/text-align-button";
+import { UndoRedoButton } from "@/components/tiptap-ui/undo-redo-button";
 
+import { handleImageUpload, MAX_FILE_SIZE } from "@/lib/tiptap-utils";
 // --- Icons ---
-import { ArrowLeftIcon } from "@/components/tiptap-icons/arrow-left-icon"
-import { HighlighterIcon } from "@/components/tiptap-icons/highlighter-icon"
-import { LinkIcon } from "@/components/tiptap-icons/link-icon"
+import { ArrowLeftIcon } from "@/components/tiptap-icons/arrow-left-icon";
+import { HighlighterIcon } from "@/components/tiptap-icons/highlighter-icon";
+import { LinkIcon } from "@/components/tiptap-icons/link-icon";
 
 // --- Hooks ---
-import { useCursorVisibility } from "@/hooks/use-cursor-visibility"
-import { useIsMobile } from "@/hooks/use-mobile"
-import { useScrolling } from "@/hooks/use-scrolling"
-import { useWindowSize } from "@/hooks/use-window-size"
+import { useCursorVisibility } from "@/hooks/use-cursor-visibility";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { useScrolling } from "@/hooks/use-scrolling";
+import { useWindowSize } from "@/hooks/use-window-size";
 
 // --- Components ---
-import { ThemeToggle } from "@/components/tiptap-extended/theme-toggle"
-
-// --- Lib ---
-import { handleImageUpload, MAX_FILE_SIZE } from "@/lib/tiptap-utils"
+// import { ThemeToggle } from "@/components/tiptap-extended/theme-toggle"
 
 // --- Styles ---
-import "@/simple-editor.scss"
+import { defaultExtensions } from "@/extensions";
+import { cn } from "@/lib/tiptap-utils";
+import "@/simple-editor.scss";
+import { useEffect } from "react";
 
 
 const MainToolbarContent = ({
@@ -93,7 +82,7 @@ const MainToolbarContent = ({
       <ToolbarSeparator />
 
       <ToolbarGroup>
-        <HeadingDropdownMenu levels={[1, 2, 3, 4]} portal={isMobile} />
+        <HeadingDropdownMenu levels={[1, 2, 3, 4, 5, 6]} portal={isMobile} />
         <ListDropdownMenu
           types={["bulletList", "orderedList", "taskList"]}
           portal={isMobile}
@@ -144,9 +133,9 @@ const MainToolbarContent = ({
 
       {isMobile && <ToolbarSeparator />}
 
-      <ToolbarGroup>
+      {/* <ToolbarGroup>
         <ThemeToggle />
-      </ToolbarGroup>
+      </ToolbarGroup> */}
     </>
   )
 }
@@ -180,40 +169,25 @@ const MobileToolbarContent = ({
   </>
 )
 
-export const extensions = [
-  StarterKit.configure({
-    horizontalRule: false,
-    link: {
-      openOnClick: false,
-      enableClickSelection: true,
-    },
-  }),
-  HorizontalRule,
-  TextAlign.configure({ types: ["heading", "paragraph"] }),
-  TaskList,
-  TaskItem.configure({ nested: true }),
-  Highlight.configure({ multicolor: true }),
-  Image,
-  Typography,
-  Superscript,
-  Subscript,
-  Selection,
-  ImageUploadNode.configure({
-    accept: "image/*",
-    maxSize: MAX_FILE_SIZE,
-    limit: 3,
-    upload: handleImageUpload,
-    onError: (error) => console.error("Upload failed:", error),
-  }),
-
-]
 
 export interface NexoEditorProps {
-  content:Content
+  content: Content
   onChange?: (content: Content) => void
+  extensions?: Extensions | undefined,
+  ssr?: boolean
+
+  className?: string
+
+  imageUploadOptions?: ImageUploadNodeOptions
 }
 
-export function NexoEditor({ content, onChange }: NexoEditorProps) {
+/** * NexoEditor is a simple editor component built with Tiptap.
+ * It provides a rich text editing experience with various features.
+ * @param {NexoEditorProps} props - The properties for the NexoEditor component.
+ * @returns {React.ReactNode} The rendered NexoEditor component.
+ */
+
+export function NexoEditor({ content, onChange, extensions, imageUploadOptions, ssr = true, className }: NexoEditorProps): React.ReactNode {
   const isMobile = useIsMobile()
   const windowSize = useWindowSize()
   const [mobileView, setMobileView] = React.useState<
@@ -222,18 +196,32 @@ export function NexoEditor({ content, onChange }: NexoEditorProps) {
   const toolbarRef = React.useRef<HTMLDivElement>(null)
 
   const editor = useEditor({
-    immediatelyRender: false,
+    immediatelyRender: !ssr,
     shouldRerenderOnTransaction: false,
     editorProps: {
       attributes: {
         autocomplete: "off",
         autocorrect: "off",
         autocapitalize: "off",
-        "aria-label": "Main content area, start typing to enter text.",
+        "aria-label": "Start typing to enter text.",
         class: "simple-editor",
       },
     },
-    extensions: extensions,
+    extensions: [
+      ...(extensions ? [...extensions] : [...defaultExtensions]),
+      ...(imageUploadOptions
+        ? [
+          ImageUploadNode.configure({
+            accept: "image/*",
+            maxSize: MAX_FILE_SIZE,
+            limit: 3,
+            onError: (error) => console.error("Upload failed:", error),
+            upload: handleImageUpload,
+            ...imageUploadOptions,
+          }),
+        ]
+        : []),
+    ],
     content,
     onUpdate: ({ editor }) => {
       const content = editor.getJSON()
@@ -250,14 +238,19 @@ export function NexoEditor({ content, onChange }: NexoEditorProps) {
     overlayHeight: toolbarRef.current?.getBoundingClientRect().height ?? 0,
   })
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!isMobile && mobileView !== "main") {
       setMobileView("main")
     }
   }, [isMobile, mobileView])
 
+  useEffect(() => {
+    if (editor && content && !isEqual(editor.getJSON(), content)) {
+      editor.commands.setContent(content)
+    }
+  }, [content, editor])
   return (
-    <div className="simple-editor-wrapper">
+    <div className={cn("simple-editor-wrapper", className)}>
       <EditorContext.Provider value={{ editor }}>
         <Toolbar
           ref={toolbarRef}
@@ -267,8 +260,8 @@ export function NexoEditor({ content, onChange }: NexoEditorProps) {
               : {}),
             ...(isMobile
               ? {
-                  bottom: `calc(100% - ${windowSize.height - rect.y}px)`,
-                }
+                bottom: `calc(100% - ${windowSize.height - rect.y}px)`,
+              }
               : {}),
           }}
         >
