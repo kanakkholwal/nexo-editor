@@ -1,14 +1,13 @@
 {
   "name": "nexo-editor",
-  "version": "0.3.0",
+  "version": "0.3.2",
   "type": "module",
   "main": "./dist/index.umd.js",
   "module": "./dist/index.es.js",
   "types": "./dist/types/index.d.ts",
   "files": [
     "dist",
-    "README.md",
-    "LICENSE"
+    "README.md"
   ],
   "sideEffects": [
     "**/*.css"
@@ -43,8 +42,7 @@
     "build:all": "npm run build:types && npm run build:lib",
     "build": "npm run clean && npm run build:all && npm run clean",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview",
-    "dev": "vite",
+    "treemap": "npx rollup-plugin-visualizer --template treemap --open",
     "changeset": "changeset",
     "version": "changeset version",
     "release": "npm run build && changeset publish"

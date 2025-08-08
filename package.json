@@ -3,9 +3,8 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "prepare": "cd package && changeset && changeset version",
-    "publish": "cd package && npm run build && changeset publish",
-    "preinstalldev": "npm i && cd package && npm i && ../demo && npm i",
+    "pkg:prepare": "cd package && changeset && changeset version",
+    "pkg:preinstall:dev": "npm i && cd package && npm i && ../demo && npm i",
     "pkg:preinstall": "npm install && cd package && npm install",
     "pkg:publish": "cd package && npm run build && npm publish --access public",
     "pkg:build": "cd package && npm run build"

@@ -3,7 +3,6 @@ import path from 'path';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 
-// import { visualizer } from 'rollup-plugin-visualizer';
 
 export default defineConfig({
   plugins: [
@@ -14,12 +13,7 @@ export default defineConfig({
       tsconfigPath: './tsconfig.json',
       outDir: 'dist/types',
     }),
-    // visualizer({
-    //   filename: 'dist/bundle-analysis.html',
-    //   open: true,
-    //   gzipSize: true,
-    //   brotliSize: true
-    // })
+
   ],
   resolve: {
     alias: {
@@ -40,10 +34,21 @@ export default defineConfig({
         '@tiptap/pm',
         '@tiptap/starter-kit',
         '@tiptap/extensions',
+        '@tiptap/extension-highlight',
+        '@tiptap/extension-horizontal-rule',
+        '@tiptap/extension-image',
+        '@tiptap/extension-list',
+        '@tiptap/extension-subscript',
+        '@tiptap/extension-superscript',
+        '@tiptap/extension-text-align',
+        '@tiptap/extension-typography',
+        '@tiptap/static-renderer',
         '@floating-ui/react',
         '@radix-ui/react-dropdown-menu',
         '@radix-ui/react-popover',
+        'lodash.isequal',
         'lodash.throttle',
+        'nanoid',
         'react-hotkeys-hook'
       ], // peer deps
       output: {
@@ -58,7 +63,19 @@ export default defineConfig({
           '@radix-ui/react-dropdown-menu': 'RadixUIDropdownMenu',
           '@radix-ui/react-popover': 'RadixUIPopover',
           'lodash.throttle': 'lodashThrottle',
-          'react-hotkeys-hook': 'reactHotkeysHook'
+          'react-hotkeys-hook': 'reactHotkeysHook',
+          "lodash.isequal": "lodashIsEqual",
+          'nanoid': 'nanoid',
+          '@tiptap/extension-highlight': 'TiptapExtensionHighlight',
+          '@tiptap/extension-horizontal-rule': 'TiptapExtensionHorizontalRule',
+          '@tiptap/extension-image': 'TiptapExtensionImage',
+          '@tiptap/extension-list': 'TiptapExtensionList',
+          '@tiptap/extension-subscript': 'TiptapExtensionSubscript',
+          '@tiptap/extension-superscript': 'TiptapExtensionSuperscript',
+          '@tiptap/extension-text-align': 'TiptapExtensionTextAlign',
+          '@tiptap/extension-typography': 'TiptapExtensionTypography',
+          '@tiptap/static-renderer': 'TiptapStaticRenderer',
+          
         },
       },
     },
