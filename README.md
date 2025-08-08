@@ -1,9 +1,3 @@
----
-title: Nexo Editor - React Markdown Editor with TipTap 
-description: Lightweight, customizable React Markdown editor built on TipTap, supporting SSR, custom plugins, Tailwind & ShadCN UI integration.
-keywords: React Markdown Editor, MDX Editor, TipTap React, Rich Text Editor, SSR Editor Component, Tailwind Editor, ShadCN UI Editor
----
-
 # Nexo Editor — React Markdown & MDX Rich Text Editor
 
 A lightweight, customizable React Markdown Editor built on TipTap, designed for modern React projects with support for SSR, Tailwind, ShadCN UI, and plugin extensibility based on `@tiptap/react`

@@ -24,24 +24,13 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
 
       - name: Install dependencies
-        run: cd package && npm install
+        run: npm preinstall
 
-      - name: Build with TypeScript
-        run: cd package && npm run build
+      # - name: Build with TypeScript
+      #   run: cd package && npm run build
 
-      # - name: Run tests (if applicable)
-      #   run: npm test
-      # - name: Create Release Pull Request or Publish to npm
-      #   id: changesets
-      #   uses: changesets/action@v1
-      #   with:
-      #     publish: npm run release
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #     NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
-      - name: Publish to npm
+      - name: Build with TypeScript and Publish to npm
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        run: |
-          cd package && npm publish --access public
+        run: npm run pkg:publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
