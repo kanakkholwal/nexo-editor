@@ -1,9 +1,23 @@
 @import "../../package/lib/style.css";
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
 body {
-    font-family: "Inter","DM Sans", Arial, sans-serif;
-    line-height: 1.6;
-    margin: 0;
+    --tt-toolbar-height: 44px;
+    --tt-theme-text: var(--tt-gray-light-900);
+
+    .dark & {
+        --tt-theme-text: var(--tt-gray-dark-900);
+    }
+}
+
+
+
+body {
+    font-family: "Inter", "DM Sans", Arial, sans-serif;
+    color: var(--tt-theme-text);
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
     padding: 0;
 }
 
@@ -32,6 +46,7 @@ body {
     white-space: pre-wrap;
     overflow-x: auto;
 }
+
 pre {
     white-space: pre-wrap;
 }

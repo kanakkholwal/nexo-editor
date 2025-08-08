@@ -1,6 +1,6 @@
 {
   "name": "nexo-editor",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "type": "module",
   "main": "./dist/index.umd.js",
   "module": "./dist/index.es.js",
@@ -12,10 +12,6 @@
   "sideEffects": [
     "**/*.css"
   ],
-  "peerDependencies": {
-    "react": "latest",
-    "react-dom": "latest"
-  },
   "exports": {
     ".": {
       "import": "./dist/index.es.js",
@@ -79,7 +75,9 @@
     "Extendable Editor for React Projects",
     "Nexo Editor Component"
   ],
-  "dependencies": {
+  "peerDependencies": {
+    "react": "latest",
+    "react-dom": "latest",
     "@floating-ui/react": "^0.27.15",
     "@radix-ui/react-dropdown-menu": "^2.1.15",
     "@radix-ui/react-popover": "^1.1.14",
@@ -96,10 +94,12 @@
     "@tiptap/react": "^3.0.9",
     "@tiptap/starter-kit": "^3.0.9",
     "@tiptap/static-renderer": "^3.0.9",
+    "react-hotkeys-hook": "^5.1.0"
+  },
+  "dependencies": {
     "lodash.isequal": "^4.5.0",
     "lodash.throttle": "^4.1.1",
-    "nanoid": "^5.1.5",
-    "react-hotkeys-hook": "^5.1.0"
+    "nanoid": "^5.1.5"
   },
   "devDependencies": {
     "@types/lodash.isequal": "^4.5.8",

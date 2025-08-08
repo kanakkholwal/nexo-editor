@@ -1,6 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
-body {
+
+.nexo-editor-wrapper {
+  display: flex;
+  flex-direction: column;
   --tt-toolbar-height: 44px;
   --tt-theme-text: var(--tt-gray-light-900);
 
@@ -9,32 +11,21 @@ body {
   }
 }
 
-body {
-  font-family: "Inter", sans-serif;
-  color: var(--tt-theme-text);
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-  padding: 0;
-}
-
-
-
-::-webkit-scrollbar {
+.nexo-editor-wrapper  ::-webkit-scrollbar {
   width: 0.25rem;
 }
 
-* {
+.nexo-editor-wrapper * {
   scrollbar-width: thin;
   scrollbar-color: var(--tt-scrollbar-color) transparent;
 }
 
-::-webkit-scrollbar-thumb {
+.nexo-editor-wrapper ::-webkit-scrollbar-thumb {
   background-color: var(--tt-scrollbar-color);
   border-radius: 9999px;
 }
 
-::-webkit-scrollbar-track {
+.nexo-editor-wrapper ::-webkit-scrollbar-track {
   background: transparent;
 }
 
@@ -42,13 +33,9 @@ body {
   font-family: "DM Sans", sans-serif;
 }
 
-.simple-editor-wrapper {
-  display: flex;
-  flex-direction: column;
-}
 
-.simple-editor-content {
-  max-width: 648px;
+.nexo-editor-content {
+  max-width: var(--nexo-editor-content-max-width, 648px);
   width: 100%;
   margin: 0 auto;
   height: 100%;
@@ -58,13 +45,13 @@ body {
   white-space: pre-wrap;
 }
 
-.simple-editor-content .tiptap.ProseMirror.simple-editor {
+.nexo-editor-content .tiptap.ProseMirror.nexo-editor {
   flex: 1;
   padding: 3rem 3rem 30vh;
 }
 
 @media screen and (max-width: 480px) {
-  .simple-editor-content .tiptap.ProseMirror.simple-editor {
+  .nexo-editor-content .tiptap.ProseMirror.nexo-editor {
     padding: 1rem 1.5rem 30vh;
   }
 }

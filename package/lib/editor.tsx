@@ -57,7 +57,7 @@ import { useWindowSize } from "@/hooks/use-window-size";
 // --- Styles ---
 import { defaultExtensions } from "@/extensions";
 import { cn } from "@/lib/tiptap-utils";
-import "@/simple-editor.scss";
+import "@/nexo-editor.scss";
 import { useEffect } from "react";
 
 
@@ -204,7 +204,7 @@ export function NexoEditor({ content, onChange, extensions, imageUploadOptions, 
         autocorrect: "off",
         autocapitalize: "off",
         "aria-label": "Start typing to enter text.",
-        class: "simple-editor",
+        class: "nexo-editor",
       },
     },
     extensions: [
@@ -250,7 +250,7 @@ export function NexoEditor({ content, onChange, extensions, imageUploadOptions, 
     }
   }, [content, editor])
   return (
-    <div className={cn("simple-editor-wrapper", className)}>
+    <div className={cn("nexo-editor-wrapper", className)}>
       <EditorContext.Provider value={{ editor }}>
         <Toolbar
           ref={toolbarRef}
@@ -282,7 +282,7 @@ export function NexoEditor({ content, onChange, extensions, imageUploadOptions, 
         <EditorContent
           editor={editor}
           role="presentation"
-          className="simple-editor-content"
+          className="nexo-editor-content"
         />
       </EditorContext.Provider>
     </div>
