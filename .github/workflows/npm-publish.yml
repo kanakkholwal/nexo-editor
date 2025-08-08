@@ -24,7 +24,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
 
       - name: Install dependencies
-        run: npm preinstall
+        run: npm run preinstall
 
       # - name: Build with TypeScript
       #   run: cd package && npm run build
