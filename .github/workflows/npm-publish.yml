@@ -1,4 +1,4 @@
-name: Build and Publish
+name: Build and Publish to npm
 
 on:
   push:
@@ -24,7 +24,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
 
       - name: Install dependencies
-        run: npm run preinstall
+        run: npm run pkg:preinstall
 
       # - name: Build with TypeScript
       #   run: cd package && npm run build
