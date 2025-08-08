@@ -1,13 +1,13 @@
-:root {
+:root,.nexo-editor-wrapper{
   --tt-toolbar-height: 2.75rem;
   --tt-safe-area-bottom: env(safe-area-inset-bottom, 0px);
-  --tt-toolbar-bg-color: var(--white);
-  --tt-toolbar-border-color: var(--tt-gray-light-a-100);
+  --tt-toolbar-bg-color: var(--background, var(--white));
+  --tt-toolbar-border-color: var(--border, var(--tt-gray-light-a-100));
 }
 
 .dark {
-  --tt-toolbar-bg-color: var(--black);
-  --tt-toolbar-border-color: var(--tt-gray-dark-a-50);
+  --tt-toolbar-bg-color: var(--background, var(--black));
+  --tt-toolbar-border-color: var(--border, var(--tt-gray-dark-a-50));
 }
 
 .tiptap-toolbar {
@@ -71,12 +71,12 @@
 
     padding: 0.188rem;
     border-radius: calc(
-      var(--tt-toolbar-padding) + var(--tt-radius-lg) +
+      var(--tt-toolbar-padding) + var(--radius, var(--tt-radius-lg)) +
         var(--tt-toolbar-border-width)
     );
     border: var(--tt-toolbar-border-width) solid var(--tt-toolbar-border-color);
     background-color: var(--tt-toolbar-bg-color);
-    box-shadow: var(--tt-shadow-elevated-md);
+    box-shadow: var(--shadow-md, var(--tt-shadow-elevated-md));
     outline: none;
     overflow: hidden;
 

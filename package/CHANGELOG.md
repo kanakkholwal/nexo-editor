@@ -1,5 +1,11 @@
 # nexo-editor
 
+## 0.3.4
+
+### Patch Changes
+
+- css variable fixed for shadcn compatibility
+
 ## 0.3.3
 
 ### Patch Changes

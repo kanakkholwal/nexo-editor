@@ -179,6 +179,7 @@ export interface NexoEditorProps {
   className?: string
 
   imageUploadOptions?: ImageUploadNodeOptions
+  id?: string
 }
 
 /** * NexoEditor is a simple editor component built with Tiptap.

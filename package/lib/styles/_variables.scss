@@ -1,4 +1,4 @@
-:root {
+:root,.nexo-editor-wrapper {
   /****************** 
   Basics
   ******************/
@@ -171,7 +171,7 @@
   }
 }
 
-:root {
+:root,.nexo-editor-wrapper {
   /************************************************** 
       Global colors 
   **************************************************/
@@ -206,7 +206,7 @@
 }
 
 /* Text colors */
-:root {
+:root,.nexo-editor-wrapper {
   --tt-color-text-gray: hsl(45, 2%, 46%);
   --tt-color-text-brown: hsl(19, 31%, 47%);
   --tt-color-text-orange: hsl(30, 89%, 45%);
@@ -228,7 +228,7 @@
   --tt-color-text-red-contrast: hsla(8, 79%, 79%, 0.4);
 }
 
-.dark,[data-theme="dark"] {
+.dark,[data-theme='dark'] {
   --tt-color-text-gray: hsl(0, 0%, 61%);
   --tt-color-text-brown: hsl(18, 35%, 58%);
   --tt-color-text-orange: hsl(25, 53%, 53%);
@@ -251,7 +251,7 @@
 }
 
 /* Highlight colors */
-:root {
+:root,.nexo-editor-wrapper {
   --tt-color-highlight-yellow: #fef9c3;
   --tt-color-highlight-green: #dcfce7;
   --tt-color-highlight-blue: #e0f2fe;
