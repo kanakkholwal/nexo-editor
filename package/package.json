@@ -1,0 +1,112 @@
+{
+  "name": "nexo-editor",
+  "version": "0.3.0",
+  "type": "module",
+  "main": "./dist/index.umd.js",
+  "module": "./dist/index.es.js",
+  "types": "./dist/types/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "peerDependencies": {
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.es.js",
+      "types": "./dist/types/index.d.ts"
+    },
+    "./editor": {
+      "import": "./dist/editor.es.js",
+      "types": "./dist/types/editor.d.ts"
+    },
+    "./extensions": {
+      "import": "./dist/extensions.es.js",
+      "types": "./dist/types/extensions.d.ts"
+    },
+    "./utils": {
+      "import": "./dist/utils.es.js",
+      "types": "./dist/types/utils.d.ts"
+    },
+    "./style.css": "./dist/index.css"
+  },
+  "scripts": {
+    "clean": "node ./clean-up.js",
+    "build:types": "tsc --project tsconfig.json",
+    "build:lib": "vite build",
+    "build:all": "npm run build:types && npm run build:lib",
+    "build": "npm run clean && npm run build:all && npm run clean",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview",
+    "dev": "vite",
+    "changeset": "changeset",
+    "version": "changeset version",
+    "release": "npm run build && changeset publish"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/",
+    "tag": "latest",
+    "directory": "dist"
+  },
+  "homepage": "https://github.com/kanakkholwal/nexo-editor#readme",
+  "repository": "https://github.com/kanakkholwal/nexo-editor",
+  "bugs": "https://github.com/kanakkholwal/nexo-editor/issues",
+  "author": "Kanak Kholwal (@kanakkholwal)",
+  "keywords": [
+    "React Markdown Editor",
+    "MDX Editor",
+    "Rich Text Editor",
+    "TipTap React",
+    "Customizable Markdown Editor",
+    "WYSIWYG Markdown Editor",
+    "React Text Editor Component",
+    "React Editor with Plugins",
+    "React TipTap Extensions",
+    "SSR Friendly Markdown Editor",
+    "Lightweight Editor for React",
+    "Custom Toolbar Editor",
+    "Editor with Floating UI",
+    "Radix UI Editor",
+    "ShadCN Editor Integration",
+    "Tailwind CSS Editor Component",
+    "Accessible Markdown Editor",
+    "React Markdown Editor with Hooks",
+    "Extendable Editor for React Projects",
+    "Nexo Editor Component"
+  ],
+  "dependencies": {
+    "@floating-ui/react": "^0.27.15",
+    "@radix-ui/react-dropdown-menu": "^2.1.15",
+    "@radix-ui/react-popover": "^1.1.14",
+    "@tiptap/extension-highlight": "^3.0.9",
+    "@tiptap/extension-horizontal-rule": "^3.0.9",
+    "@tiptap/extension-image": "^3.0.9",
+    "@tiptap/extension-list": "^3.0.9",
+    "@tiptap/extension-subscript": "^3.0.9",
+    "@tiptap/extension-superscript": "^3.0.9",
+    "@tiptap/extension-text-align": "^3.0.9",
+    "@tiptap/extension-typography": "^3.0.9",
+    "@tiptap/extensions": "^3.0.9",
+    "@tiptap/pm": "^3.0.9",
+    "@tiptap/react": "^3.0.9",
+    "@tiptap/starter-kit": "^3.0.9",
+    "@tiptap/static-renderer": "^3.0.9",
+    "lodash.isequal": "^4.5.0",
+    "lodash.throttle": "^4.1.1",
+    "nanoid": "^5.1.5",
+    "react-hotkeys-hook": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/lodash.isequal": "^4.5.8",
+    "@types/lodash.throttle": "^4.1.9",
+    "@types/react": "latest",
+    "@types/react-dom": "latest"
+  }
+}

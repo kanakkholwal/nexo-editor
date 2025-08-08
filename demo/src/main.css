@@ -1,4 +1,4 @@
-@import "../lib/style.css";
+@import "../../package/lib/style.css";
 
 body {
     font-family: "Inter","DM Sans", Arial, sans-serif;

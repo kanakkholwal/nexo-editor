@@ -1,8 +1,8 @@
 import "@/style.css";
 import { Content } from "@tiptap/react";
 import { useState } from "react";
-import { NexoEditor } from "../lib/editor";
-import { handleImageUpload, MAX_FILE_SIZE } from "../lib/utils";
+import { NexoEditor } from "../../package/lib/editor";
+import { handleImageUpload, MAX_FILE_SIZE } from "../../package/lib/utils";
 import demoContent from "./data/content.json";
 
 
@@ -36,11 +36,11 @@ export default function App() {
             onChange={(content) => setContent(content)}
             ssr={false}
             imageUploadOptions={{
-                 accept: "image/*",
-                            maxSize: MAX_FILE_SIZE,
-                            limit: 3,
-                            onError: (error) => console.error("Upload failed:", error),
-                            upload: handleImageUpload,
+                accept: "image/*",
+                maxSize: MAX_FILE_SIZE,
+                limit: 3,
+                onError: (error) => console.error("Upload failed:", error),
+                upload: handleImageUpload,
             }}
         />
 
