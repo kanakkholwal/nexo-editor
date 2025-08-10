@@ -1,4 +1,5 @@
-:root,.nexo-editor-wrapper{
+:root,
+.nexo-editor-wrapper {
   --tiptap-image-upload-active: var(--tt-brand-color-500);
   --tiptap-image-upload-progress-bg: var(--tt-brand-color-50);
   --tiptap-image-upload-icon-bg: var(--tt-brand-color-500);
@@ -44,8 +45,10 @@
     display: inline-flex;
     align-items: flex-start;
     justify-content: center;
-    -webkit-user-select: none; /* Safari */
-    -ms-user-select: none; /* IE 10 and IE 11 */
+    -webkit-user-select: none;
+    /* Safari */
+    -ms-user-select: none;
+    /* IE 10 and IE 11 */
     user-select: none;
   }
 
@@ -55,8 +58,8 @@
     height: 1.75rem;
     bottom: 0;
     right: 0;
-    background-color: var(--tiptap-image-upload-icon-bg);
-    border-radius: var(--tt-radius-lg, 0.75rem);
+    background-color: var(--primary, var(--tiptap-image-upload-icon-bg));
+    border-radius: var(--radius-lg, var(--tt-radius-lg, 0.75rem));
     display: flex;
     align-items: center;
     justify-content: center;
@@ -65,7 +68,7 @@
   .tiptap-image-upload-icon {
     width: 0.875rem;
     height: 0.875rem;
-    color: var(--tiptap-image-upload-icon-color);
+    color: var(--primary-foreground, var(--tiptap-image-upload-icon-color));
   }
 
   .tiptap-image-upload-dropzone-rect-primary {
@@ -82,7 +85,7 @@
   }
 
   .tiptap-image-upload-text {
-    color: var(--tiptap-image-upload-text-color);
+    color: var(--card-foreground, var(--tiptap-image-upload-text-color));
     font-weight: 500;
     font-size: 0.875rem;
     line-height: normal;
@@ -94,7 +97,7 @@
   }
 
   .tiptap-image-upload-subtext {
-    color: var(--tiptap-image-upload-subtext-color);
+    color: var(--muted-foreground, var(--tiptap-image-upload-subtext-color));
     font-weight: 600;
     line-height: normal;
     font-size: 0.75rem;
@@ -102,8 +105,8 @@
 
   .tiptap-image-upload-drag-area {
     padding: 2rem 1.5rem;
-    border: 1.5px dashed var(--tiptap-image-upload-border);
-    border-radius: var(--tt-radius-md, 0.5rem);
+    border: 1.5px dashed var(--border, var(--tiptap-image-upload-border));
+    border-radius: var(--radius-md, var(--tt-radius-md, 0.5rem));
     text-align: center;
     cursor: pointer;
     position: relative;
@@ -111,23 +114,19 @@
     transition: all 0.2s ease;
 
     &:hover {
-      border-color: var(--tiptap-image-upload-border-hover);
+      border-color: var(--primary, var(--tiptap-image-upload-border-hover));
     }
 
     &.drag-active {
-      border-color: var(--tiptap-image-upload-border-active);
-      background-color: rgba(
-        var(--tiptap-image-upload-active-rgb, 0, 123, 255),
-        0.05
-      );
+      border-color: var(--primary, var(--tiptap-image-upload-border-active));
+      background-color: rgba(var(--tiptap-image-upload-active-rgb, 0, 123, 255),
+          0.05);
     }
 
     &.drag-over {
-      border-color: var(--tiptap-image-upload-border-active);
-      background-color: rgba(
-        var(--tiptap-image-upload-active-rgb, 0, 123, 255),
-        0.1
-      );
+      border-color: var(--primary, var(--tiptap-image-upload-border-active));
+      background-color: rgba(var(--tiptap-image-upload-active-rgb, 0, 123, 255),
+          0.1);
     }
   }
 
@@ -137,8 +136,10 @@
     justify-content: center;
     flex-direction: column;
     gap: 0.25rem;
-    -webkit-user-select: none; /* Safari */
-    -ms-user-select: none; /* IE 10 and IE 11 */
+    -webkit-user-select: none;
+    /* Safari */
+    -ms-user-select: none;
+    /* IE 10 and IE 11 */
     user-select: none;
   }
 
@@ -153,13 +154,13 @@
     align-items: center;
     justify-content: space-between;
     padding: 0.5rem 0;
-    border-bottom: 1px solid var(--tiptap-image-upload-border);
+    border-bottom: 1px solid var(--border, var(--tiptap-image-upload-border));
     margin-bottom: 0.5rem;
 
     span {
       font-size: 0.875rem;
       font-weight: 500;
-      color: var(--tiptap-image-upload-text-color);
+      color: var(--card-foreground, var(--tiptap-image-upload-text-color));
     }
   }
 
@@ -172,13 +173,16 @@
     .tiptap-image-upload-progress {
       position: absolute;
       inset: 0;
-      background-color: var(--tiptap-image-upload-progress-bg);
+      background-color: var(--primary, var(--tiptap-image-upload-progress-bg));
+      background-color: color-mix(in srgb,
+          var(--primary, var(--tiptap-image-upload-progress-bg)) 10%,
+          transparent);
       transition: all 300ms ease-out;
     }
 
     .tiptap-image-upload-preview-content {
       position: relative;
-      border: 1px solid var(--tiptap-image-upload-border);
+      border: 1px solid var(--border, var(--tiptap-image-upload-border));
       border-radius: var(--tt-radius-md, 0.5rem);
       padding: 1rem;
       display: flex;
@@ -194,14 +198,14 @@
 
       .tiptap-image-upload-file-icon {
         padding: 0.5rem;
-        background-color: var(--tiptap-image-upload-icon-bg);
+        background-color: var(--primary, var(--tiptap-image-upload-icon-bg));
         border-radius: var(--tt-radius-lg, 0.75rem);
         aspect-ratio: 1;
 
         svg {
           width: 0.875rem;
           height: 0.875rem;
-          color: var(--tiptap-image-upload-icon-color);
+          color: var(--primary-foreground, var(--tiptap-image-upload-icon-color));
         }
       }
     }
@@ -218,7 +222,7 @@
 
       .tiptap-image-upload-progress-text {
         font-size: 0.75rem;
-        color: var(--tiptap-image-upload-border-active);
+        color: var(--primary, var(--tiptap-image-upload-border-active));
         font-weight: 600;
       }
     }
@@ -227,7 +231,7 @@
 
 .tiptap.ProseMirror.ProseMirror-focused {
   .ProseMirror-selectednode .tiptap-image-upload-drag-area {
-    border-color: var(--tiptap-image-upload-active);
+    border-color: var(--primary, var(--tiptap-image-upload-active));
   }
 }
 

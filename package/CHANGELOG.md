@@ -1,5 +1,11 @@
 # nexo-editor
 
+## 1.0.0
+
+### Major Changes
+
+- shadcn ui compatibility - beta
+
 ## 0.3.4
 
 ### Patch Changes

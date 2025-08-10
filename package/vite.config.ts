@@ -82,6 +82,6 @@ export default defineConfig({
     },
     sourcemap: false,
     minify: 'terser',
-    cssCodeSplit: true,
+    cssCodeSplit: false, // ⬅ forces all CSS into one file
   },
 });

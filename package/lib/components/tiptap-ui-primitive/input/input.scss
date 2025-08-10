@@ -20,7 +20,7 @@
   outline: none;
 
   &::placeholder {
-    color: var(--tiptap-input-placeholder);
+    color: var(--muted-foreground, var(--tiptap-input-placeholder));
   }
 }
 

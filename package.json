@@ -8,7 +8,7 @@
     "pkg:preinstall:dev": "npm i && cd package && npm i && ../demo && npm i",
     "pkg:preinstall": "npm install && cd package && npm install",
     "pkg:publish": "cd package && npm run build && npm publish --access public",
-    "pkg:build": "cd package && npm run build && npm link && cd ../demo && npm link nexo-editor",
+    "pkg:build": "cd package && npm run build",
     "pkg:dev": "npm run dev --workspace=nexo-editor",
     "demo:dev": "npm run dev --workspace=demo"
   },

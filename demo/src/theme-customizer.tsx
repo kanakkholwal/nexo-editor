@@ -22,21 +22,21 @@ const THEMES = baseColors.filter(
 )
 
 export function ThemeCustomizer({ className }: React.ComponentProps<"div">) {
-  const [activeTheme, setActiveTheme] = React.useState("default")
+  const [activeTheme, setActiveTheme] = React.useState("zinc")
 
   React.useEffect(() => {
-    const savedTheme = localStorage.getItem("activeTheme") || "default"
+    const savedTheme = localStorage.getItem("activeTheme") || "zinc"
     setActiveTheme(savedTheme)
   }, [])
   React.useEffect(() => {
-   const previewElement = document.querySelector("#preview")
+    const previewElement = document.querySelector("#nexo-editor-preview-style")
     if (previewElement) {
-      previewElement.setAttribute("style",
+      previewElement.innerHTML=
         getThemeCodeOKLCH(
           baseColorsOKLCH[activeTheme as keyof typeof baseColorsOKLCH],
-          0.25
+          0.625
         )
-      )
+        
     }
     localStorage.setItem("activeTheme", activeTheme)
   }, [activeTheme])

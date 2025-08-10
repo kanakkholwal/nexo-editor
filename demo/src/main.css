@@ -1,6 +1,5 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "nexo-editor/index.css";
 
 @custom-variant dark (&:is(.dark *));
 

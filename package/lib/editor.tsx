@@ -257,7 +257,7 @@ export function NexoEditor({ content, onChange, extensions, imageUploadOptions, 
           ref={toolbarRef}
           style={{
             ...(isScrolling && isMobile
-              ? { opacity: 0, transition: "opacity 0.1s ease-in-out" }
+              ? { opacity: 0, transition: "opacity 0.3s ease-in-out" }
               : {}),
             ...(isMobile
               ? {

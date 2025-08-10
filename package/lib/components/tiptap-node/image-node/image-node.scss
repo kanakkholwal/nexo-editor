@@ -3,16 +3,31 @@
     max-width: 100%;
     height: auto;
     display: block;
+    position: relative;
   }
 
-  > img:not([data-type="emoji"] img) {
+  >img:not([data-type="emoji"] img) {
     margin: 2rem 0;
     outline: 0.125rem solid transparent;
     border-radius: var(--tt-radius-xs, 0.25rem);
   }
 
   img:not([data-type="emoji"] img).ProseMirror-selectednode {
-    outline-color: var(--tt-brand-color-500);
+    outline-color: var(--primary, var(--tt-brand-color-500));
+  }
+
+  img:before {
+    background: var(--muted, #ccc);
+    border: 1px solid var(--border, #ccc);
+    border-radius: 3px;
+    color: var(--muted-foreground, #666);
+    content: '\1F517' ' broken image of ' attr(alt);
+    display: block;
+    left: 0;
+    padding: 10px;
+    position: absolute;
+    top: -10px;
+    width: 100%;
   }
 
   // Thread image handling

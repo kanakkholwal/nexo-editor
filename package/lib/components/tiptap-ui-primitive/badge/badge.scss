@@ -67,22 +67,22 @@
 -------------------------------------------- */
 
 .tiptap-badge {
-  background-color: var(--tt-badge-bg-color);
-  border-color: var(--tt-badge-border-color);
-  color: var(--tt-badge-text-color);
+  background-color: var(--muted,var(--tt-badge-bg-color));
+  border-color: var(--border, var(--tt-badge-border-color));
+  color: var(--muted-foreground, var(--tt-badge-text-color));
 
   .tiptap-badge-icon {
-    color: var(--tt-badge-icon-color);
+    color: var(--foreground, var(--tt-badge-icon-color));
   }
 
   /* Emphasized */
   &[data-appearance="emphasized"] {
-    background-color: var(--tt-badge-bg-color-emphasized);
-    border-color: var(--tt-badge-border-color-emphasized);
-    color: var(--tt-badge-text-color-emphasized);
+    background-color: var(--muted, var(--tt-badge-bg-color-emphasized));
+    border-color: var(--border, var(--tt-badge-border-color-emphasized));
+    color: var(--muted-foreground, var(--tt-badge-text-color-emphasized));
 
     .tiptap-badge-icon {
-      color: var(--tt-badge-icon-color-emphasized);
+      color: var(--foreground, var(--tt-badge-icon-color-emphasized));
     }
   }
 

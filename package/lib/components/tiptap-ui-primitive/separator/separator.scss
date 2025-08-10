@@ -8,7 +8,7 @@
 
 .tiptap-separator {
   flex-shrink: 0;
-  background-color: var(--tt-link-border-color);
+  background-color: var(--border, var(--tt-link-border-color));
 
   &[data-orientation="horizontal"] {
     height: 1px;

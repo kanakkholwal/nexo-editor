@@ -272,7 +272,8 @@ export const handleImageUpload = async (
     onProgress?.({ progress })
   }
 
-  return "/images/tiptap-ui-placeholder-image.jpg"
+  // return "/images/tiptap-ui-placeholder-image.jpg"
+  return "https://placehold.co/600x400?text=Placeholder Image for "+ file.name.replace(/\.[^/.]+$/, "")
 }
 
 type ProtocolOptions = {

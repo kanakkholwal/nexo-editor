@@ -1,5 +1,6 @@
 import { Content } from "@tiptap/react";
 import { handleImageUpload, MAX_FILE_SIZE, NexoEditor } from "nexo-editor";
+import "nexo-editor/index.css";
 import { useState } from "react";
 import demoContent from "./data/content.json";
 
@@ -35,6 +36,9 @@ export default function App() {
                     Load Demo Content
                 </Button>
             </div>
+            <style id="nexo-editor-preview-style">
+
+            </style>
             <NexoEditor     
                 content={content}
                 onChange={(content) => setContent(content)}

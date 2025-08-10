@@ -13,10 +13,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: var(--tt-radius-lg, 0.75rem);
-  transition-property: background, color, opacity;
-  transition-duration: var(--tt-transition-duration-default);
-  transition-timing-function: var(--tt-transition-easing-default);
+  border-radius: var(--radius-lg, var(--tt-radius-lg, 0.75rem));
+  cursor: pointer;
+  transition-property: all;
+  transition-duration: var(--tt-transition-duration-default, 0.3s);
+  transition-timing-function: var(--tt-transition-easing-default, ease-in-out);
 
   // focus-visible
   &:focus-visible {
@@ -26,7 +27,10 @@
   &[data-highlighted="true"],
   &[data-focus-visible="true"] {
     background-color: var(--tt-button-hover-bg-color);
-    color: var(--tt-button-hover-text-color);
+    background-color: color-mix(in srgb,
+        var(--primary, var(--tt-button-hover-bg-color)) 10%,
+        transparent);
+    color: var(--primary-foreground, var(--tt-button-hover-text-color));
     // outline: 2px solid var(--tt-button-active-icon-color);
   }
 
@@ -153,9 +157,7 @@
   }
 
   /* button only has 2 icons and one of them is dropdown small */
-  &:has(> svg:nth-of-type(2)):has(> .tiptap-button-dropdown-small):not(
-      :has(> svg:nth-of-type(3))
-    ):not(:has(> .tiptap-button-text)) {
+  &:has(> svg:nth-of-type(2)):has(> .tiptap-button-dropdown-small):not( :has(> svg:nth-of-type(3))):not(:has(> .tiptap-button-text)) {
     gap: 0;
     padding-right: 0.25rem;
 
@@ -213,10 +215,13 @@
   &[data-active-item="true"]:not([disabled]),
   &[data-highlighted]:not([disabled]):not([data-highlighted="false"]) {
     background-color: var(--tt-button-hover-bg-color);
-    color: var(--tt-button-hover-text-color);
+    background-color: color-mix(in srgb,
+        var(--primary, var(--tt-button-hover-bg-color)) 10%,
+        transparent);
+    color: var(--primary, var(--tt-button-hover-text-color));
 
     .tiptap-button-icon {
-      color: var(--tt-button-hover-icon-color);
+      color: var(--primary, var(--tt-button-hover-icon-color));
     }
 
     .tiptap-button-icon-sub {
