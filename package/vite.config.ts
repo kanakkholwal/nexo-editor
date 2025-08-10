@@ -27,6 +27,7 @@ export default defineConfig({
       name: 'NexoEditor',
       fileName: (format) => `index.${format}.js`,
     },
+  
     rollupOptions: {
       external: [
         'react', 'react-dom',

@@ -29,12 +29,13 @@
       "import": "./dist/utils.es.js",
       "types": "./dist/types/utils.d.ts"
     },
-    "./style.css": "./dist/index.css"
+    "./index.css": "./dist/index.css"
   },
   "scripts": {
     "clean": "node ./clean-up.js",
-    "build:types": "tsc --project tsconfig.json",
+    "dev": "vite build --watch",
     "build:lib": "vite build",
+    "build:types": "tsc --project tsconfig.json",
     "build:all": "npm run build:types && npm run build:lib",
     "build": "npm run clean && npm run build:all && npm run clean",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",

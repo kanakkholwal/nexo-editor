@@ -2,6 +2,7 @@
   "name": "nexo-editor-demo",
   "version": "0.1.0",
   "type": "module",
+  "private": true,
   "scripts": {
     "clean": "node ./clean-up.js",
     "preview": "vite preview",
@@ -11,10 +12,25 @@
     "release": "npm run build && changeset publish"
   },
   "dependencies": {
+    "@radix-ui/react-dialog": "^1.1.14",
+    "@radix-ui/react-label": "^2.1.7",
+    "@radix-ui/react-scroll-area": "^1.2.9",
+    "@radix-ui/react-select": "^2.2.5",
+    "@radix-ui/react-slot": "^1.2.3",
+    "@radix-ui/react-tabs": "^1.1.12",
+    "@tailwindcss/vite": "^4.1.11",
     "@tiptap/react": "^3.0.9",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.539.0",
+    "nexo-editor": "0.3.4",
+    "next-themes": "^0.4.6",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "tslib": "^2.8.1"
+    "tailwind-merge": "^3.3.1",
+    "tailwindcss": "^4.1.11",
+    "tslib": "^2.8.1",
+    "vaul": "^1.1.2"
   },
   "devDependencies": {
     "@types/node": "^24.2.0",
@@ -28,6 +44,7 @@
     "rollup-plugin-visualizer": "^6.0.3",
     "sass-embedded": "^1.89.2",
     "terser": "^5.43.1",
+    "tw-animate-css": "^1.3.6",
     "typescript": "latest",
     "vite": "^7.0.6",
     "vite-plugin-dts": "^4.5.4"
