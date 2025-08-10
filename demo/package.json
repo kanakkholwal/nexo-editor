@@ -4,12 +4,9 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "clean": "node ./clean-up.js",
+    "build": "vite build",
     "preview": "vite preview",
-    "dev": "vite",
-    "changeset": "changeset",
-    "version": "changeset version",
-    "release": "npm run build && changeset publish"
+    "dev": "vite"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.14",
@@ -23,7 +20,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.539.0",
-    "nexo-editor": "1.0.0",
+    "nexo-editor": "1.0.",
     "next-themes": "^0.4.6",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
