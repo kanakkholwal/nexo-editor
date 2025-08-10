@@ -48,6 +48,7 @@ Here’s how to integrate `nexo-editor` into your React project:
 import React, { useState } from 'react';
 import { NexoEditor } from 'nexo-editor';
 import type { Content } from '@tiptap/react';
+import "nexo-editor/index.css"; // import the essential styles
 
 export function Editor() {
   const [content, setContent] = useState<Content>({
