@@ -1,12 +1,12 @@
 :root,.nexo-editor-wrapper{
   --tt-toolbar-height: 2.75rem;
   --tt-safe-area-bottom: env(safe-area-inset-bottom, 0px);
-  --tt-toolbar-bg-color: var(--background, var(--white));
+  --tt-toolbar-bg-color: var(--card, var(--white));
   --tt-toolbar-border-color: var(--border, var(--tt-gray-light-a-100));
 }
 
 .dark {
-  --tt-toolbar-bg-color: var(--background, var(--black));
+  --tt-toolbar-bg-color: var(--card, var(--black));
   --tt-toolbar-border-color: var(--border, var(--tt-gray-dark-a-50));
 }
 
@@ -15,6 +15,7 @@
   align-items: center;
   gap: 0.25rem;
   transition: all 0.3s ease-in-out;
+  border-radius: var(--radius, var(--tt-radius-lg));
 
   &-group {
     display: flex;

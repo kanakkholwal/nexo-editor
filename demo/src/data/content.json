@@ -105,12 +105,12 @@
     {
       "type": "codeBlock",
       "attrs": {
-        "language": null
+        "language": "javascript"
       },
       "content": [
         {
           "type": "text",
-          "text": "npx @tiptap/cli init"
+          "text": "console.log('Hello, Tiptap!')"
         }
       ]
     },

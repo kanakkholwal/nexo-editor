@@ -32,7 +32,7 @@ export default function App() {
             <div className="header mb-4 flex items-center justify-between">
                 <Sidebar />
                 Nexo Editor
-                <Button  onClick={() => setContent(demoContent)}>
+                <Button variant="default_light"  onClick={() => setContent(demoContent)}>
                     Load Demo Content
                 </Button>
             </div>

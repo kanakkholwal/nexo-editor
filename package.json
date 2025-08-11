@@ -10,7 +10,8 @@
     "pkg:publish": "cd package && npm run build && npm publish --access public",
     "pkg:build": "cd package && npm run build",
     "pkg:dev": "npm run dev --workspace=nexo-editor",
-    "demo:dev": "npm run dev --workspace=demo"
+    "demo:dev": "npm run dev --workspace=demo",
+    "link": "cd package && npm link && cd ../demo && npm link nexo-editor"
   },
   "devDependencies": {
     "@changesets/cli": "^2.29.5",

@@ -21,24 +21,28 @@ const THEMES = baseColors.filter(
   (theme) => !["slate", "stone", "gray", "zinc"].includes(theme.name)
 )
 
+const updateTheme = (themeName: string) => {
+  const previewElement = document.querySelector("#nexo-editor-preview-style")
+  if (previewElement) {
+    previewElement.innerHTML =
+      getThemeCodeOKLCH(
+        baseColorsOKLCH[themeName as keyof typeof baseColorsOKLCH],
+        0.625
+      )
+    localStorage.setItem("activeTheme", themeName)
+  }
+}
 export function ThemeCustomizer({ className }: React.ComponentProps<"div">) {
   const [activeTheme, setActiveTheme] = React.useState("zinc")
 
   React.useEffect(() => {
-    const savedTheme = localStorage.getItem("activeTheme") || "zinc"
-    setActiveTheme(savedTheme)
+    const savedTheme = localStorage.getItem("activeTheme")
+    if (savedTheme && THEMES.some((theme) => theme.name === savedTheme)) {
+      setActiveTheme(savedTheme)
+    }
   }, [])
   React.useEffect(() => {
-    const previewElement = document.querySelector("#nexo-editor-preview-style")
-    if (previewElement) {
-      previewElement.innerHTML=
-        getThemeCodeOKLCH(
-          baseColorsOKLCH[activeTheme as keyof typeof baseColorsOKLCH],
-          0.625
-        )
-        
-    }
-    localStorage.setItem("activeTheme", activeTheme)
+    updateTheme(activeTheme)
   }, [activeTheme])
   return (
     <div className={cn("grid w-full gap-2 grid-cols-3 lg:grid-cols-4", className)}>

@@ -310,10 +310,13 @@
 
   &:disabled {
     background-color: var(--tt-button-disabled-bg-color);
-    color: var(--tt-button-disabled-text-color);
+    background-color: color-mix(in srgb,
+        var(--muted, var(--tt-button-disabled-bg-color)) 10%,
+        transparent);
+    color: var(--muted-foreground, var(--tt-button-disabled-text-color));
 
     .tiptap-button-icon {
-      color: var(--tt-button-disabled-icon-color);
+      color: var(--muted-foreground, var(--tt-button-disabled-icon-color));
     }
   }
 }

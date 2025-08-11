@@ -128,7 +128,7 @@
     **************************************************/
 
     /* Light mode */
-    --tt-button-default-bg-color: var(--background, --transparent);
+    --tt-button-default-bg-color: transparent;
     --tt-button-hover-bg-color: color-mix(in srgb,
         var(--primary, var(--tt-gray-light-200)) 20%,
         transparent);
@@ -140,11 +140,11 @@
     --tt-button-active-hover-bg-color: var(--muted, --tt-gray-light-200);
     --tt-button-active-hover-bg-color-emphasized: var(--tt-brand-color-200); //more important active state hover
     --tt-button-active-hover-bg-color-subdued: var(--tt-gray-light-a-200); //less important active state hover
-    --tt-button-disabled-bg-color: var(--background, --transparent);
+    --tt-button-disabled-bg-color: var(--background, transparent);
 
     /* Dark mode */
     .dark & {
-      --tt-button-default-bg-color: var(--background, --transparent);
+      --tt-button-default-bg-color: transparent;
       --tt-button-hover-bg-color: color-mix(in srgb,
           var(--primary, var(--tt-gray-light-200)) 20%,
           transparent);
@@ -156,7 +156,7 @@
       --tt-button-active-hover-bg-color: var(--muted, --tt-gray-dark-200);
       --tt-button-active-hover-bg-color-emphasized: var(--tt-brand-color-800); //more important active state hover
       --tt-button-active-hover-bg-color-subdued: var(--tt-gray-dark-a-200); //less important active state hover
-      --tt-button-disabled-bg-color: var(--background, --transparent);
+      --tt-button-disabled-bg-color: var(--background, transparent);
     }
 
     /************************************************** 
