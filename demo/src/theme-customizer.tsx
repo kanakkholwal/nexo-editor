@@ -4,14 +4,23 @@ import template from "lodash/template"
 import * as React from "react"
 
 import { Button } from "@/components/ui/button"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 import { cn } from "@/lib/utils"
+import { Moon, Sun } from "lucide-react"
+import { useTheme } from "next-themes"
 import {
   BaseColor,
   baseColors,
   baseColorsOKLCH,
 } from "./colors"
 import { Label } from "./components/ui/label"
-
 interface BaseColorOKLCH {
   light: Record<string, string>
   dark: Record<string, string>
@@ -34,6 +43,7 @@ const updateTheme = (themeName: string) => {
 }
 export function ThemeCustomizer({ className }: React.ComponentProps<"div">) {
   const [activeTheme, setActiveTheme] = React.useState("zinc")
+  const { resolvedTheme } = useTheme()
 
   React.useEffect(() => {
     const savedTheme = localStorage.getItem("activeTheme")
@@ -44,64 +54,84 @@ export function ThemeCustomizer({ className }: React.ComponentProps<"div">) {
   React.useEffect(() => {
     updateTheme(activeTheme)
   }, [activeTheme])
+  const currentTheme = (THEMES.find((theme) => theme.name === activeTheme) || THEMES[0]) as BaseColor
+
+
+  return <Dialog>
+    <DialogTrigger asChild>
+      <Button
+        key={currentTheme.name}
+        variant="outline"
+        size="sm"
+        data-active={activeTheme === currentTheme.name}
+      >
+        <span
+          className="size-5 aspect-square rounded-full cursor-pointer"
+          style={{
+            backgroundColor: `hsl(${currentTheme.activeColor[resolvedTheme as "light" | "dark"]})`,
+          }} />
+        {currentTheme.label}
+      </Button>
+
+    </DialogTrigger>
+    <DialogContent>
+      <DialogHeader>
+        <DialogTitle>
+          Theme Customizer
+        </DialogTitle>
+        <DialogDescription>
+          Choose a theme for the Nexo Editor preview.
+        </DialogDescription>
+      </DialogHeader>
+      <div className={cn("grid w-full gap-2 grid-cols-3 lg:grid-cols-4", className)}>
+        {THEMES.map((theme) => (
+          <div key={theme.name} className="flex items-center justify-center flex-col">
+            <Button
+              key={theme.name}
+              variant="outline"
+              size="sm"
+              data-active={activeTheme === theme.name}
+              onClick={() => setActiveTheme(theme.name)}
+              className="size-8 text-xs font-medium aspect-square rounded-full cursor-pointer"
+              style={{
+                backgroundColor: `hsl(${theme.activeColor[resolvedTheme as "light" | "dark"]})`,
+              }}
+            />
+            <Label
+              className={cn(
+                "text-xs text-center mt-1 font-medium",
+                activeTheme === theme.name ? "text-primary" : "text-muted-foreground"
+              )}
+              htmlFor={theme.name}
+            >
+              {theme.label}
+            </Label>
+          </div>
+        ))}
+      </div>
+    </DialogContent>
+  </Dialog>
+
+}
+
+export function ThemeToggler({
+  className,
+}: React.ComponentProps<"div">) {
+  const { setTheme, resolvedTheme } = useTheme()
+
   return (
-    <div className={cn("grid w-full gap-2 grid-cols-3 lg:grid-cols-4", className)}>
-      {THEMES.map((theme) => (
-        <div key={theme.name} className="flex items-center justify-center flex-col">
-          <Button
-            key={theme.name}
-            variant="outline"
-            size="sm"
-            data-active={activeTheme === theme.name}
-            onClick={() => setActiveTheme(theme.name)}
-            className="size-8 text-xs font-medium aspect-square rounded-full cursor-pointer"
-            style={{
-              backgroundColor: `hsl(${theme.cssVars.light["primary"]})`,
-            }}
-          />
-          <Label
-            className={cn(
-              "text-xs text-center mt-1 font-medium",
-              activeTheme === theme.name ? "text-primary" : "text-muted-foreground"
-            )}
-            htmlFor={theme.name}
-          >
-            {theme.name.charAt(0).toUpperCase() + theme.name.slice(1)}
-          </Label>
-        </div>
-      ))}
-    </div>
+    <Button
+      variant="ghost"
+      size="icon"
+      className={cn("h-8 w-8 p-0", className)}
+      onClick={() => setTheme(resolvedTheme === "light" ? "dark" : "light")}
+    >
+      {resolvedTheme === "light" ? <Moon /> : <Sun />}
+    </Button>
   )
 }
 
 
-
-function CustomizerCode({ themeName }: { themeName: string }) {
-  const [hasCopied, setHasCopied] = React.useState(false)
-  const [tailwindVersion, setTailwindVersion] = React.useState("v4")
-  const activeTheme = React.useMemo(
-    () => baseColors.find((theme) => theme.name === themeName),
-    [themeName]
-  )
-  const activeThemeOKLCH = React.useMemo(
-    () => baseColorsOKLCH[themeName as keyof typeof baseColorsOKLCH],
-    [themeName]
-  )
-
-  React.useEffect(() => {
-    if (hasCopied) {
-      setTimeout(() => {
-        setHasCopied(false)
-      }, 2000)
-    }
-  }, [hasCopied])
-
-  return (
-    <>
-
-    </>
-  )
-}
 
 function getThemeCodeOKLCH(theme: BaseColorOKLCH | undefined, radius: number) {
   if (!theme) {
