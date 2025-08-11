@@ -58,7 +58,10 @@ import { useWindowSize } from "@/hooks/use-window-size";
 import { defaultExtensions } from "@/extensions";
 import { cn } from "@/lib/tiptap-utils";
 import "@/nexo-editor.scss";
+import { Placeholder } from "@tiptap/extensions";
 import { useEffect } from "react";
+import { HardBreakButton, HorizontalRuleButton } from "./components/tiptap-ui/block-elements";
+import { ClearFormattingButton } from "./components/tiptap-ui/inline-elements/clear-formatting";
 
 
 const MainToolbarContent = ({
@@ -89,6 +92,9 @@ const MainToolbarContent = ({
         />
         <BlockquoteButton />
         <CodeBlockButton />
+        <HardBreakButton />
+        <HorizontalRuleButton />
+        
       </ToolbarGroup>
 
       <ToolbarSeparator />
@@ -99,12 +105,14 @@ const MainToolbarContent = ({
         <MarkButton type="strike" />
         <MarkButton type="code" />
         <MarkButton type="underline" />
+        
         {!isMobile ? (
           <ColorHighlightPopover />
         ) : (
           <ColorHighlightPopoverButton onClick={onHighlighterClick} />
         )}
         {!isMobile ? <LinkPopover /> : <LinkButton onClick={onLinkClick} />}
+        <ClearFormattingButton />
       </ToolbarGroup>
 
       <ToolbarSeparator />
@@ -177,7 +185,7 @@ export interface NexoEditorProps {
   ssr?: boolean
 
   className?: string
-
+  placeholder?: string
   imageUploadOptions?: ImageUploadNodeOptions
   id?: string
 }
@@ -188,7 +196,7 @@ export interface NexoEditorProps {
  * @returns {React.ReactNode} The rendered NexoEditor component.
  */
 
-export function NexoEditor({ content, onChange, extensions, imageUploadOptions, ssr = true, className }: NexoEditorProps): React.ReactNode {
+export function NexoEditor({ content, onChange, extensions, imageUploadOptions, ssr = true, className,placeholder }: NexoEditorProps): React.ReactNode {
   const isMobile = useIsMobile()
   const windowSize = useWindowSize()
   const [mobileView, setMobileView] = React.useState<
@@ -222,6 +230,19 @@ export function NexoEditor({ content, onChange, extensions, imageUploadOptions, 
           }),
         ]
         : []),
+      Placeholder.configure({
+        // Use a placeholder:
+        placeholder: placeholder || 'Write something …',
+        // Use different placeholders depending on the node type:
+        // placeholder: ({ node }) => {
+        //   if (node.type.name === 'heading') {
+        //     return 'What’s the title?'
+        //   }
+
+        //   return 'Can you add some further context?'
+        // },
+      }),
+
     ],
     content,
     onUpdate: ({ editor }) => {

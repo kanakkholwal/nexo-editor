@@ -1,5 +1,11 @@
 # nexo-editor
 
+## 1.2.0
+
+### Minor Changes
+
+- shadcn theme overlap resolved and new controls added
+
 ## 1.0.0
 
 ### Major Changes

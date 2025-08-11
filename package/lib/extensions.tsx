@@ -7,7 +7,7 @@ import { Subscript } from "@tiptap/extension-subscript"
 import { Superscript } from "@tiptap/extension-superscript"
 import { TextAlign } from "@tiptap/extension-text-align"
 import { Typography } from "@tiptap/extension-typography"
-import { Selection } from "@tiptap/extensions"
+import { Dropcursor, Selection } from "@tiptap/extensions"
 import { StarterKit } from "@tiptap/starter-kit"
 
 // --- Tiptap Node ---
@@ -40,7 +40,9 @@ export const extensionsMap = {
     Superscript,
     Subscript,
     Selection,
-
+    Dropcursor: Dropcursor.configure({
+        color: 'var(--primary)',
+    })
 }
 
 /** * Array of default Tiptap extensions used in the editor.

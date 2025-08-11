@@ -1,6 +1,6 @@
 {
   "name": "nexo-editor",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "type": "module",
   "main": "./dist/index.umd.js",
   "module": "./dist/index.es.js",
@@ -88,7 +88,7 @@
     "@tiptap/extension-superscript": "^3.0.9",
     "@tiptap/extension-text-align": "^3.0.9",
     "@tiptap/extension-typography": "^3.0.9",
-    "@tiptap/extensions": "^3.0.9",
+    "@tiptap/extensions": "^3.1.0",
     "@tiptap/pm": "^3.0.9",
     "@tiptap/react": "^3.0.9",
     "@tiptap/starter-kit": "^3.0.9",
@@ -100,6 +100,7 @@
   "dependencies": {
     "lodash.isequal": "^4.5.0",
     "lodash.throttle": "^4.1.1",
+    "lucide-react": "^0.539.0",
     "nanoid": "^5.1.5"
   },
   "devDependencies": {
