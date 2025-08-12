@@ -42,6 +42,7 @@
     "eslint-plugin-react-refresh": "^0.4.20",
     "rollup-plugin-visualizer": "^6.0.3",
     "sass-embedded": "^1.89.2",
+    "shiki": "^3.9.2",
     "terser": "^5.43.1",
     "tw-animate-css": "^1.3.6",
     "typescript": "latest",

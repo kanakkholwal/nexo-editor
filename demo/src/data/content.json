@@ -3,475 +3,97 @@
   "content": [
     {
       "type": "heading",
-      "attrs": {
-        "textAlign": null,
-        "level": 1
-      },
+      "attrs": { "level": 1 },
+      "content": [{ "type": "text", "text": "Getting Started" }]
+    },
+    {
+      "type": "paragraph",
       "content": [
-        {
-          "type": "text",
-          "text": "Getting started"
-        }
+        { "type": "text", "text": "Welcome to the " },
+        { "type": "text", "marks": [{ "type": "italic" }, { "type": "highlight", "attrs": { "color": "var(--tt-color-highlight-yellow)" } }], "text": "Nexo Editor" },
+        { "type": "text", "text": " — a lightweight, fully customizable rich text editor built with " },
+        { "type": "text", "marks": [{ "type": "bold" }], "text": "open-source" },
+        { "type": "text", "text": " UI components and Tiptap extensions under the " },
+        { "type": "text", "marks": [{ "type": "bold" }], "text": "MIT License" },
+        { "type": "text",  "text": ", Follow creator at " },
+        { "type": "mention", "attrs": {
+            "id": "kanakkholwal",
+            "label": "Kanak Kholwal",
+            "mentionSuggestionChar": "@"
+          } },
+                  { "type": "text", "text": "on " },
+
+        { "type": "text", "marks": [{ "type": "link", "attrs": { "href": "https://github.com/kanakkholwal", "target": "_blank", "rel": "noopener noreferrer" } }], "text": "Github" },
+        { "type": "text", "text": ", " },
+
+        { "type": "text", "marks": [{ "type": "link", "attrs": { "href": "https://www.linkedin.com/in/kanakkholwal/", "target": "_blank", "rel": "noopener noreferrer" } }], "text": "LinkedIn" },
+        { "type": "text", "text": ", " },
+        { "type": "text", "marks": [{ "type": "link", "attrs": { "href": "https://x.com/kanakkholwal", "target": "_blank", "rel": "noopener noreferrer" } }], "text": "Twitter" }
+
       ]
     },
     {
       "type": "paragraph",
-      "attrs": {
-        "textAlign": null
-      },
       "content": [
-        {
-          "type": "text",
-          "text": "Welcome to the "
-        },
-        {
-          "type": "text",
-          "marks": [
-            {
-              "type": "italic"
-            },
-            {
-              "type": "highlight",
-              "attrs": {
-                "color": "var(--tt-color-highlight-yellow)"
-              }
-            }
-          ],
-          "text": "Simple Editor"
-        },
-        {
-          "type": "text",
-          "text": " template! This template integrates "
-        },
-        {
-          "type": "text",
-          "marks": [
-            {
-              "type": "bold"
-            }
-          ],
-          "text": "open source"
-        },
-        {
-          "type": "text",
-          "text": " UI components and Tiptap extensions licensed under "
-        },
-        {
-          "type": "text",
-          "marks": [
-            {
-              "type": "bold"
-            }
-          ],
-          "text": "MIT"
-        },
-        {
-          "type": "text",
-          "text": "."
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "attrs": {
-        "textAlign": null
-      },
-      "content": [
-        {
-          "type": "text",
-          "text": "Integrate it by following the "
-        },
-        {
-          "type": "text",
-          "marks": [
-            {
-              "type": "link",
-              "attrs": {
-                "href": "https://tiptap.dev/docs/ui-components/templates/simple-editor",
-                "target": "_blank",
-                "rel": "noopener noreferrer nofollow",
-                "class": null
-              }
-            }
-          ],
-          "text": "Tiptap UI Components docs"
-        },
-        {
-          "type": "text",
-          "text": " or using our CLI tool."
-        }
+        { "type": "text", "text": "Follow the " },
+        { "type": "text", "marks": [{ "type": "link", "attrs": { "href": "https://docs.nexonauts.com/packages/nexo-editor", "target": "_blank", "rel": "noopener noreferrer" } }], "text": "Nexo Editor Docs" },
+        { "type": "text", "text": " or Install via your preferred package manager" }
       ]
     },
     {
       "type": "codeBlock",
-      "attrs": {
-        "language": "javascript"
-      },
-      "content": [
-        {
-          "type": "text",
-          "text": "console.log('Hello, Tiptap!')"
-        }
-      ]
+      "attrs": { "language": "shell" },
+      "content": [{ "type": "text", "text": "npm install nexo-editor --save \n# or \nbun install nexo-editor \n# or \npnpm add nexo-editor" }]
     },
     {
       "type": "heading",
-      "attrs": {
-        "textAlign": null,
-        "level": 2
-      },
-      "content": [
-        {
-          "type": "text",
-          "text": "Features"
-        }
-      ]
-    },
-    {
-      "type": "blockquote",
-      "content": [
-        {
-          "type": "paragraph",
-          "attrs": {
-            "textAlign": null
-          },
-          "content": [
-            {
-              "type": "text",
-              "marks": [
-                {
-                  "type": "italic"
-                }
-              ],
-              "text": "A fully responsive rich text editor with built-in support for common formatting and layout tools. Type markdown "
-            },
-            {
-              "type": "text",
-              "marks": [
-                {
-                  "type": "code"
-                }
-              ],
-              "text": "**"
-            },
-            {
-              "type": "text",
-              "marks": [
-                {
-                  "type": "italic"
-                }
-              ],
-              "text": " or use keyboard shortcuts "
-            },
-            {
-              "type": "text",
-              "marks": [
-                {
-                  "type": "code"
-                }
-              ],
-              "text": "⌘+B"
-            },
-            {
-              "type": "text",
-              "text": " for "
-            },
-            {
-              "type": "text",
-              "marks": [
-                {
-                  "type": "strike"
-                }
-              ],
-              "text": "most"
-            },
-            {
-              "type": "text",
-              "text": " all common markdown marks. 🪄"
-            }
-          ]
-        }
-      ]
+      "attrs": { "level": 2 },
+      "content": [{ "type": "text", "text": "Key Features" }]
     },
     {
       "type": "paragraph",
-      "attrs": {
-        "textAlign": "left"
-      },
       "content": [
-        {
-          "type": "text",
-          "text": "Add images, customize alignment, and apply "
-        },
-        {
-          "type": "text",
-          "marks": [
-            {
-              "type": "highlight",
-              "attrs": {
-                "color": "var(--tt-color-highlight-blue)"
-              }
-            }
-          ],
-          "text": "advanced formatting"
-        },
-        {
-          "type": "text",
-          "text": " to make your writing more engaging and professional."
-        }
+        { "type": "text", "marks": [{ "type": "italic" }], "text": "A responsive, modern editor with:" }
       ]
-    },
-    {
-      "type": "image",
-      "attrs": {
-        "src": "/images/tiptap-ui-placeholder-image.jpg",
-        "alt": "placeholder-image",
-        "title": "placeholder-image"
-      }
     },
     {
       "type": "bulletList",
       "content": [
         {
           "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "attrs": {
-                "textAlign": "left"
-              },
-              "content": [
-                {
-                  "type": "text",
-                  "marks": [
-                    {
-                      "type": "bold"
-                    }
-                  ],
-                  "text": "Superscript"
-                },
-                {
-                  "type": "text",
-                  "text": " (x"
-                },
-                {
-                  "type": "text",
-                  "marks": [
-                    {
-                      "type": "superscript"
-                    }
-                  ],
-                  "text": "2"
-                },
-                {
-                  "type": "text",
-                  "text": ") and "
-                },
-                {
-                  "type": "text",
-                  "marks": [
-                    {
-                      "type": "bold"
-                    }
-                  ],
-                  "text": "Subscript"
-                },
-                {
-                  "type": "text",
-                  "text": " (H"
-                },
-                {
-                  "type": "text",
-                  "marks": [
-                    {
-                      "type": "subscript"
-                    }
-                  ],
-                  "text": "2"
-                },
-                {
-                  "type": "text",
-                  "text": "O) for precision."
-                }
-              ]
-            }
-          ]
+          "content": [{ "type": "paragraph", "content": [{ "type": "text", "marks": [{ "type": "bold" }], "text": "Markdown shortcuts" }, { "type": "text", "text": " — Type `" }, { "type": "text", "marks": [{ "type": "code" }], "text": "**" }, { "type": "text", "text": "` or press `⌘+B` for bold, plus other common marks." }] }]
         },
         {
           "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "attrs": {
-                "textAlign": "left"
-              },
-              "content": [
-                {
-                  "type": "text",
-                  "marks": [
-                    {
-                      "type": "bold"
-                    }
-                  ],
-                  "text": "Typographic conversion"
-                },
-                {
-                  "type": "text",
-                  "text": ": automatically convert to "
-                },
-                {
-                  "type": "text",
-                  "marks": [
-                    {
-                      "type": "code"
-                    }
-                  ],
-                  "text": "->"
-                },
-                {
-                  "type": "text",
-                  "text": " an arrow "
-                },
-                {
-                  "type": "text",
-                  "marks": [
-                    {
-                      "type": "bold"
-                    }
-                  ],
-                  "text": "→"
-                },
-                {
-                  "type": "text",
-                  "text": "."
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "attrs": {
-        "textAlign": "left"
-      },
-      "content": [
-        {
-          "type": "text",
-          "marks": [
-            {
-              "type": "italic"
-            }
-          ],
-          "text": "→ "
+          "content": [{ "type": "paragraph", "content": [{ "type": "text", "marks": [{ "type": "bold" }], "text": "Advanced formatting" }, { "type": "text", "text": " — Superscript, subscript, highlights, and typographic replacements (`->` →)." }] }]
         },
         {
-          "type": "text",
-          "marks": [
-            {
-              "type": "link",
-              "attrs": {
-                "href": "https://tiptap.dev/docs/ui-components/templates/simple-editor#features",
-                "target": "_blank",
-                "rel": "noopener noreferrer nofollow",
-                "class": null
-              }
-            }
-          ],
-          "text": "Learn more"
+          "type": "listItem",
+          "content": [{ "type": "paragraph", "content": [{ "type": "text", "marks": [{ "type": "bold" }], "text": "Media support" }, { "type": "text", "text": " — Add images with alignment and captions." }] }]
         }
       ]
     },
     {
-      "type": "horizontalRule"
+      "type": "image",
+      "attrs": { "src": "/images/tiptap-ui-placeholder-image.jpg", "alt": "Editor Preview", "title": "Editor Preview" }
     },
     {
       "type": "heading",
-      "attrs": {
-        "textAlign": "left",
-        "level": 2
-      },
-      "content": [
-        {
-          "type": "text",
-          "text": "Make it your own"
-        }
-      ]
+      "attrs": { "level": 2 },
+      "content": [{ "type": "text", "text": "Customization" }]
     },
     {
       "type": "paragraph",
-      "attrs": {
-        "textAlign": "left"
-      },
       "content": [
-        {
-          "type": "text",
-          "text": "Switch between light and dark modes, and tailor the editor's appearance with customizable CSS to match your style."
-        }
+        { "type": "text", "text": "Easily toggle light/dark themes, adjust UI styles via CSS, and extend with custom Tiptap extensions to match your workflow." }
       ]
     },
     {
       "type": "taskList",
       "content": [
-        {
-          "type": "taskItem",
-          "attrs": {
-            "checked": true
-          },
-          "content": [
-            {
-              "type": "paragraph",
-              "attrs": {
-                "textAlign": "left"
-              },
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Test template"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "taskItem",
-          "attrs": {
-            "checked": false
-          },
-          "content": [
-            {
-              "type": "paragraph",
-              "attrs": {
-                "textAlign": "left"
-              },
-              "content": [
-                {
-                  "type": "text",
-                  "marks": [
-                    {
-                      "type": "link",
-                      "attrs": {
-                        "href": "https://tiptap.dev/docs/ui-components/templates/simple-editor",
-                        "target": "_blank",
-                        "rel": "noopener noreferrer nofollow",
-                        "class": null
-                      }
-                    }
-                  ],
-                  "text": "Integrate the free template"
-                }
-              ]
-            }
-          ]
-        }
+        { "type": "taskItem", "attrs": { "checked": true }, "content": [{ "type": "paragraph", "content": [{ "type": "text", "text": "Try the demo" }] }] },
+        { "type": "taskItem", "attrs": { "checked": false }, "content": [{ "type": "paragraph", "content": [{ "type": "text", "marks": [{ "type": "link", "attrs": { "href": "https://tiptap.dev/docs/ui-components/templates/simple-editor", "target": "_blank", "rel": "noopener noreferrer" } }], "text": "Integrate into your app" }] }] }
       ]
-    },
-    {
-      "type": "paragraph",
-      "attrs": {
-        "textAlign": "left"
-      }
     }
   ]
 }

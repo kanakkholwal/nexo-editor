@@ -45,6 +45,7 @@ export default defineConfig({
         '@tiptap/extension-typography',
         '@tiptap/static-renderer',
         '@floating-ui/react',
+        '@tiptap/extension-mention',
         '@radix-ui/react-dropdown-menu',
         '@radix-ui/react-popover',
         'lodash.isequal',
@@ -76,6 +77,7 @@ export default defineConfig({
           '@tiptap/extension-text-align': 'TiptapExtensionTextAlign',
           '@tiptap/extension-typography': 'TiptapExtensionTypography',
           '@tiptap/static-renderer': 'TiptapStaticRenderer',
+          '@tiptap/extension-mention':'TiptapExtensionMention'
           
         },
       },

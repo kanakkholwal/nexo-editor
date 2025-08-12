@@ -295,7 +295,7 @@ export const HorizontalRuleButton = React.forwardRef<
             tabIndex={-1}
             aria-label={label}
             aria-pressed={isActive}
-            tooltip="Horizontal Rule"
+            tooltip="Separator"
             onClick={handleClick}
 
             ref={ref}

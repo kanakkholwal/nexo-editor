@@ -3,6 +3,7 @@
 import { Highlight } from "@tiptap/extension-highlight"
 import { Image } from "@tiptap/extension-image"
 import { TaskItem, TaskList } from "@tiptap/extension-list"
+import Mention from '@tiptap/extension-mention'
 import { Subscript } from "@tiptap/extension-subscript"
 import { Superscript } from "@tiptap/extension-superscript"
 import { TextAlign } from "@tiptap/extension-text-align"
@@ -17,6 +18,7 @@ import { HorizontalRule } from "@/components/tiptap-node/horizontal-rule-node/ho
 // --- Tiptap UI CSS---
 import "@/components/tiptap-node/horizontal-rule-node/horizontal-rule-node.scss"
 import "@/components/tiptap-node/image-node/image-node.scss"
+import suggestions from "@/lib/mention-utils"
 
 /**
  * Map of Tiptap extensions used in the editor.
@@ -42,6 +44,16 @@ export const extensionsMap = {
     Selection,
     Dropcursor: Dropcursor.configure({
         color: 'var(--primary)',
+    }),
+    Mention: Mention
+    .configure({
+        HTMLAttributes: {
+            class: 'mention',
+
+        },
+        deleteTriggerWithBackspace: true,
+        suggestions,
+
     })
 }
 

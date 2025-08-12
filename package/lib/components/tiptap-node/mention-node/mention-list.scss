@@ -1,0 +1,42 @@
+
+.tiptap {
+  :first-child {
+    margin-top: 0;
+  }
+
+  .mention {
+    background-color: var(--card);
+    background-color: color-mix(in srgb,
+        var(--primary, var(--tt-brand-color-500)) 5%,
+        transparent);
+    border-radius: 0.4rem;
+    box-decoration-break: clone;
+    color: var(--primary);
+    line-height: 0.95;
+    padding: 0.1rem 0.3rem;
+    &::after {
+      content: '\200B';
+    }
+  }
+}
+/* Dropdown menu */
+.mention-list {
+  background: var(--popover);
+  border: 1px solid var(--border);
+  border-radius: 0.7rem;
+  // box-shadow: var(--shadow, 0.1rem 0.2rem 0.4rem rgba(0, 0, 0, 0.1));
+  ---tw-shadow-color:var(--border, rgba(0, 0, 0, 0.1));
+  box-shadow:0 10px 15px -3px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 4px 6px -4px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  overflow: auto;
+  padding: 0.4rem;
+  position: relative;
+
+  button {
+    background-color: transparent;
+    text-align: left;
+    width: 100%;  
+  }
+}

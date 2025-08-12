@@ -1,5 +1,12 @@
 # nexo-editor
 
+## 2.1.0
+
+### Minor Changes
+
+- Mention extension compatbility
+- shadcn theme overlap resolved and new controls added
+
 ## 1.2.0
 
 ### Minor Changes
