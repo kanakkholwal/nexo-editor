@@ -65,7 +65,7 @@ export default function App() {
         <div className="my-4">
             <p className="text-sm text-muted-foreground">
                 This is a demo of the Nexo Editor. You can try it out and customize the
-                themes using the Theme Customizer below.
+                themes using the Theme Customizer below (works with Shadcn UI CSS variables).
             </p>
             <div className="mt-4 flex items-center gap-2">
 
