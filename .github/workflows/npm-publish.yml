@@ -20,7 +20,7 @@ jobs:
       - name: 🔍 Detect changed projects
         id: changed
         run: |
-              git diff --quiet HEAD^ HEAD ./package|| echo "package_changed=true" >> $GITHUB_OUTPUT
+              git diff --quiet HEAD^ HEAD ./package || echo "package_changed=true" >> $GITHUB_OUTPUT
       
 
       - name: Set up Node.js
