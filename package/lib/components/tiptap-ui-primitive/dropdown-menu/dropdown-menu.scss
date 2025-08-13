@@ -60,4 +60,7 @@
   &[data-side="left-end"] {
     animation: slideFromRight 150ms cubic-bezier(0.16, 1, 0.3, 1);
   }
+  button,.tiptap-button{
+    text-align: left;
+  }
 }

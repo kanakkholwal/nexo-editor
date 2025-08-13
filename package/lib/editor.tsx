@@ -13,7 +13,6 @@ import {
 
 // --- Tiptap Node ---
 import "@/components/tiptap-node/blockquote-node/blockquote-node.scss";
-import "@/components/tiptap-node/code-block-node/code-block-node.scss";
 import "@/components/tiptap-node/heading-node/heading-node.scss";
 import "@/components/tiptap-node/list-node/list-node.scss";
 import "@/components/tiptap-node/paragraph-node/paragraph-node.scss";
@@ -94,7 +93,7 @@ const MainToolbarContent = ({
         <CodeBlockButton />
         <HardBreakButton />
         <HorizontalRuleButton />
-        
+
       </ToolbarGroup>
 
       <ToolbarSeparator />
@@ -105,7 +104,7 @@ const MainToolbarContent = ({
         <MarkButton type="strike" />
         <MarkButton type="code" />
         <MarkButton type="underline" />
-        
+
         {!isMobile ? (
           <ColorHighlightPopover />
         ) : (
@@ -196,7 +195,7 @@ export interface NexoEditorProps {
  * @returns {React.ReactNode} The rendered NexoEditor component.
  */
 
-export function NexoEditor({ content, onChange, extensions, imageUploadOptions, ssr = true, className,placeholder }: NexoEditorProps): React.ReactNode {
+export function NexoEditor({ content, onChange, extensions, imageUploadOptions, ssr = true, className, placeholder }: NexoEditorProps): React.ReactNode {
   const isMobile = useIsMobile()
   const windowSize = useWindowSize()
   const [mobileView, setMobileView] = React.useState<
@@ -233,6 +232,7 @@ export function NexoEditor({ content, onChange, extensions, imageUploadOptions, 
       Placeholder.configure({
         // Use a placeholder:
         placeholder: placeholder || 'Write something …',
+        showOnlyWhenEditable: true,
         // Use different placeholders depending on the node type:
         // placeholder: ({ node }) => {
         //   if (node.type.name === 'heading') {

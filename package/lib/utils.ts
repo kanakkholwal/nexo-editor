@@ -3,5 +3,6 @@ export { renderToHTMLString, renderToMarkdown, renderToReactElement } from '@tip
 
 export { handleImageUpload, MAX_FILE_SIZE } from "@/lib/tiptap-utils";
 
-export { defaultMentionOptions } from "@/lib/mention-utils";
-export type {  SuggestionType } from "@/lib/mention-utils";
+export * from "@/lib/languages-list";
+export { defaultMentionOptions, type SuggestionType } from "@/lib/mention-utils";
+

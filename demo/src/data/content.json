@@ -16,7 +16,8 @@
         { "type": "text", "text": " UI components and Tiptap extensions under the " },
         { "type": "text", "marks": [{ "type": "bold" }], "text": "MIT License" },
         { "type": "text",  "text": ", Follow creator at " },
-        { "type": "mention", "attrs": {
+        { "type": "mention", "from": 37,
+          "to": 38,"attrs": {
             "id": "kanakkholwal",
             "label": "Kanak Kholwal",
             "mentionSuggestionChar": "@"

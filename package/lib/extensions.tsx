@@ -8,14 +8,15 @@ import { Subscript } from "@tiptap/extension-subscript"
 import { Superscript } from "@tiptap/extension-superscript"
 import { TextAlign } from "@tiptap/extension-text-align"
 import { Typography } from "@tiptap/extension-typography"
-import { Dropcursor, Selection } from "@tiptap/extensions"
+import { Selection } from "@tiptap/extensions"
 import { StarterKit } from "@tiptap/starter-kit"
 
 // --- Tiptap Node ---
-import { HorizontalRule } from "@/components/tiptap-node/horizontal-rule-node/horizontal-rule-node-extension"
+import TiptapHorizontalRule from "@tiptap/extension-horizontal-rule"
 
 
 // --- Tiptap UI CSS---
+import CodeBlock from "@/components/tiptap-node/code-block-node/code-block"
 import "@/components/tiptap-node/horizontal-rule-node/horizontal-rule-node.scss"
 import "@/components/tiptap-node/image-node/image-node.scss"
 import suggestions from "@/lib/mention-utils"
@@ -31,8 +32,14 @@ export const extensionsMap = {
             openOnClick: false,
             enableClickSelection: true,
         },
+        dropcursor: {
+            color: 'var(--primary)',
+            width: 2,
+            class: 'drop-cursor',
+        },
+        trailingNode: false,
     }),
-    HorizontalRule,
+    TiptapHorizontalRule,
     TextAlign: TextAlign.configure({ types: ["heading", "paragraph"] }),
     TaskList,
     TaskItem: TaskItem.configure({ nested: true }),
@@ -42,19 +49,15 @@ export const extensionsMap = {
     Superscript,
     Subscript,
     Selection,
-    Dropcursor: Dropcursor.configure({
-        color: 'var(--primary)',
-    }),
     Mention: Mention
-    .configure({
-        HTMLAttributes: {
-            class: 'mention',
-
-        },
-        deleteTriggerWithBackspace: true,
-        suggestions,
-
-    })
+        .configure({
+            HTMLAttributes: {
+                class: 'mention',
+            },
+            deleteTriggerWithBackspace: true,
+            suggestions,
+        }),
+    CodeBlock
 }
 
 /** * Array of default Tiptap extensions used in the editor.

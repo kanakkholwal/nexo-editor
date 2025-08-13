@@ -1,6 +1,6 @@
 {
   "name": "nexo-editor",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "type": "module",
   "main": "./dist/index.umd.js",
   "module": "./dist/index.es.js",
@@ -39,7 +39,7 @@
     "build:all": "npm run build:types && npm run build:lib",
     "build": "npm run clean && npm run build:all && npm run clean",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "treemap": "npx rollup-plugin-visualizer --template treemap --open",
+    "treemap": "npx rollup-plugin-visualizer --template sunburst --filename treemap.html",
     "changeset": "changeset",
     "version": "changeset version",
     "release": "npm run build && changeset publish"
@@ -84,6 +84,7 @@
     "@tiptap/extension-horizontal-rule": "^3.0.9",
     "@tiptap/extension-image": "^3.0.9",
     "@tiptap/extension-list": "^3.0.9",
+    "@tiptap/extension-mention": "^3.1.0",
     "@tiptap/extension-subscript": "^3.0.9",
     "@tiptap/extension-superscript": "^3.0.9",
     "@tiptap/extension-text-align": "^3.0.9",
@@ -92,14 +93,13 @@
     "@tiptap/pm": "^3.0.9",
     "@tiptap/react": "^3.0.9",
     "@tiptap/starter-kit": "^3.0.9",
-    "@tiptap/static-renderer": "^3.0.9",
+    "@tiptap/suggestion": "^3.1.0",
     "react": "latest",
     "react-dom": "latest",
     "react-hotkeys-hook": "^5.1.0"
   },
   "dependencies": {
-    "@tiptap/extension-mention": "^3.1.0",
-    "@tiptap/suggestion": "^3.1.0",
+    "@tiptap/static-renderer": "^3.1.0",
     "lodash.isequal": "^4.5.0",
     "lodash.throttle": "^4.1.1",
     "lucide-react": "^0.539.0",

@@ -133,7 +133,7 @@
         var(--primary, var(--tt-gray-light-200)) 20%,
         transparent);
     --tt-button-active-bg-color: color-mix(in srgb,
-        var(--primary, var(--tt-gray-light-a-100)) 10%,
+        var(--muted-foreground, var(--tt-gray-light-a-100)) 10%,
         transparent);
     --tt-button-active-bg-color-emphasized: var(--tt-brand-color-100); //more important active state
     --tt-button-active-bg-color-subdued: var(--tt-gray-light-a-100); //less important active state
@@ -149,7 +149,7 @@
           var(--primary, var(--tt-gray-light-200)) 20%,
           transparent);
       --tt-button-active-bg-color: color-mix(in srgb,
-          var(--primary, var(--tt-gray-light-a-100)) 10%,
+          var(--muted-foreground, var(--tt-gray-light-a-100)) 10%,
           transparent);
       --tt-button-active-bg-color-emphasized: var(--tt-brand-color-900); //more important active state
       --tt-button-active-bg-color-subdued: var(--tt-gray-dark-a-100); //less important active state

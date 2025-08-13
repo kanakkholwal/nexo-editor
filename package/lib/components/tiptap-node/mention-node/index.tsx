@@ -7,7 +7,7 @@ import {
   useImperativeHandle,
   useState
 } from 'react'
-import "./mention-list.scss"  
+import "./mention-list.scss"
 
 // Define the shape of methods exposed via ref
 export interface MentionListRef {

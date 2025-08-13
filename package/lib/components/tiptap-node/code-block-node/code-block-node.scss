@@ -45,11 +45,13 @@
   }
 
   // Code blocks
-  pre {
+  pre:not([class="lang-"]):not([class^="lang-"]){
+    margin-top: 1.5em;
+  }
+  pre{
     background-color: var(--tt-codeblock-bg);
     color: var(--tt-codeblock-text);
     border: 1px solid var(--tt-codeblock-border);
-    margin-top: 1.5em;
     margin-bottom: 1.5em;
     padding: 1em;
     font-size: 1rem;
@@ -62,5 +64,19 @@
       -webkit-text-fill-color: inherit;
       color: inherit;
     }
+  }
+}
+.code-block-node{
+  position: relative;
+  width: 100%;
+  overflow-x: auto;
+}
+.code-block-header{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0.5rem;
+  button{
+    text-align: left;
   }
 }

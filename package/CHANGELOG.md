@@ -1,5 +1,17 @@
 # nexo-editor
 
+## 2.2.0
+
+### Major Changes
+
+- shadcn ui compatibility - beta
+
+### Minor Changes
+
+- Mention extension compatbility
+- Codeblock node has language selection option now!!
+- shadcn theme overlap resolved and new controls added
+
 ## 2.1.0
 
 ### Minor Changes

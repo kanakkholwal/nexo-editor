@@ -1,6 +1,7 @@
 import MentionList, { MentionListRef } from '@/components/tiptap-node/mention-node'
 import { computePosition, flip, offset, shift } from '@floating-ui/dom'
 import { MentionNodeAttrs } from '@tiptap/extension-mention'
+import { PluginKey } from '@tiptap/pm/state'
 import { Editor, posToDOMRect, ReactRenderer } from '@tiptap/react'
 import { SuggestionOptions } from '@tiptap/suggestion'
 
@@ -77,6 +78,7 @@ const mentionOptions: SuggestionType = {
   allowSpaces: false,
   allowToIncludeChar: false,
   allowedPrefixes: [' '],
+  pluginKey: new PluginKey('mention'),
   items: async ({ query }: { query: string }) => {
     // Simulate an API call to fetch mention items based on the query
     // In a real application, replace this with an actual API call
