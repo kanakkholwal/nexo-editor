@@ -38,7 +38,6 @@ export default function App() {
 
     return <div className="min-h-screen max-w-7xl mx-auto space-y-5" id="preview">
         <section id="header" className="p-6">
-
             <div className="header mb-4 flex items-center justify-between flex-wrap gap-4">
                 <div className="flex-1 whitespace-nowrap text-left">
                     Nexo Editor
