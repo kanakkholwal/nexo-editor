@@ -8,10 +8,9 @@ import { Spacer } from "@/components/tiptap-ui-primitive/spacer";
 import {
   Toolbar,
   ToolbarGroup,
-  
+  ToolbarProps,
   ToolbarSeparator
 } from "@/components/tiptap-ui-primitive/toolbar";
-import { ToolbarProps } from "@/components/tiptap-ui-primitive/toolbar";
 // --- Tiptap Node CSS ---
 import "@/components/tiptap-node/blockquote-node/blockquote-node.scss";
 import "@/components/tiptap-node/heading-node/heading-node.scss";
@@ -196,7 +195,7 @@ export interface NexoEditorProps {
  */
 
 export function NexoEditor({
-  content, onChange, extensions, imageUploadOptions, 
+  content, onChange, extensions, imageUploadOptions,
   ssr = true, className, placeholder,
   toolbarProps
 }: NexoEditorProps): React.ReactNode {
@@ -234,16 +233,15 @@ export function NexoEditor({
         : []),
       Placeholder.configure({
         // Use a placeholder:
-        placeholder: placeholder || 'Write something …',
         showOnlyWhenEditable: true,
-        // Use different placeholders depending on the node type:
-        // placeholder: ({ node }) => {
-        //   if (node.type.name === 'heading') {
-        //     return 'What’s the title?'
-        //   }
-
-        //   return 'Can you add some further context?'
-        // },
+        placeholder: ({ node }) => {
+          if (node.type.name === "heading") {
+            return `What’s the title for Heading ${node.attrs["level"] || 1} ? `;
+          }
+          // return placeholder || "Press '/' for commands, or '++' for AI autocomplete...";
+          return placeholder || "Can you add some further context?";
+        },
+        includeChildren: true,
       }),
 
     ],

@@ -1,5 +1,5 @@
-import { Content } from "@tiptap/react";
-import { handleImageUpload, MAX_FILE_SIZE } from "nexo-editor";
+import { Content, JSONContent } from "@tiptap/react";
+import { defaultExtensions, handleImageUpload, MAX_FILE_SIZE, renderToMarkdown } from "nexo-editor";
 import "nexo-editor/index.css";
 import { lazy, Suspense, useEffect, useState } from "react";
 import { IoLogoGithub } from "react-icons/io";
@@ -84,7 +84,7 @@ export default function App() {
             </div>
         </section>
         <main id="editor" className="flex-1 min-h-[400px]">
-            <style id="nexo-editor-preview-style"/>
+            <style id="nexo-editor-preview-style" />
             {mode === "preview" ? (<Suspense fallback={
                 <div className="flex items-center justify-center h-full min-h-96 border rounded-md card">
                     <LoaderCircle className="animate-spin size-10 text-primary" />
@@ -100,7 +100,24 @@ export default function App() {
 
                     <NexoEditor
                         content={content}
-                        onChange={(content) => setContent(content)}
+                        onChange={(content) => {
+                            setContent(content)
+                            try {
+                                console.log("Content Changed:", content);
+                                if(!content || !content["content"]) {
+                                    console.error("Invalid content structure:", content);
+                                    return;
+                                }
+                                const markdown = renderToMarkdown({
+                                    content: content as JSONContent,
+                                    extensions: defaultExtensions,
+                                });
+                                console.log("Markdown Content:", markdown);
+                            }
+                            catch (error) {
+                                console.error("Error rendering to markdown:", error);
+                            }
+                        }}
                         ssr={false}
                         imageUploadOptions={{
                             accept: "image/*",

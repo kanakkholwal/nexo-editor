@@ -24,12 +24,15 @@ import suggestions from "@/lib/mention-utils"
  * Map of Tiptap extensions used in the editor.
  * This map is used to configure the editor with the necessary extensions.
  */
-export const extensionsMap = {
+const extensionsMap = {
     StarterKit: StarterKit.configure({
         horizontalRule: false,
         link: {
             openOnClick: false,
             enableClickSelection: true,
+            protocols: ['http', 'https', 'mailto', 'tel'],
+            autolink: true,
+            defaultProtocol: "https",
         },
         dropcursor: {
             color: 'var(--primary)',
@@ -39,6 +42,9 @@ export const extensionsMap = {
         trailingNode: false,
         codeBlock: false,
     }),
+    // Markdown: Markdown.configure({
+    //     html: true,
+    // }),
     TiptapHorizontalRule,
     TextAlign: TextAlign.configure({ types: ["heading", "paragraph"] }),
     TaskList,
@@ -66,6 +72,7 @@ export const extensionsMap = {
         },
     }),
 }
+Object.freeze(extensionsMap)
 
 /** * Array of default Tiptap extensions used in the editor.
  * This array is used to initialize
@@ -73,7 +80,7 @@ export const extensionsMap = {
  * This array is used to initialize
  * the editor with the default set of extensions.
  */
+const defaultExtensions = Object.values(extensionsMap)
 
-export const defaultExtensions = [
-    ...Object.values(extensionsMap),
-]
+export { defaultExtensions, extensionsMap }
+

@@ -70,13 +70,17 @@
   position: relative;
   width: 100%;
   overflow-x: auto;
-}
-.code-block-header{
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding: 0.5rem;
-  button{
-    text-align: left;
+  .code-block-header{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0.5rem;
+    button:focus,button:focus-visible,button:hover {
+      outline: var(--primary,--tt-button-focus-bg-color) solid 1px;
+    }
   }
 }

@@ -1,5 +1,19 @@
 # nexo-editor-demo
 
+## 0.0.6
+
+### Patch Changes
+
+- fix : intial render destroy fix
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies
+  - nexo-editor@3.0.0
+
 ## 0.0.5
 
 ### Patch Changes
