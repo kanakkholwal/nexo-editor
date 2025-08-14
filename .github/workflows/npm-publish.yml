@@ -1,29 +1,25 @@
-name: Build and Publish to npm
+name: Build and Publish to npm & GitHub Packages
 
 on:
   push:
     branches:
       - main
-      
-      
-      
+
 jobs:
   build:
     name: Release
     runs-on: ubuntu-latest
-    
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-    
+
       - name: 🔍 Detect changed projects
         id: changed
         run: |
-              git diff --quiet HEAD^ HEAD ./package || echo "package_changed=true" >> $GITHUB_OUTPUT
-      
+          git diff --quiet HEAD^ HEAD ./package || echo "package_changed=true" >> $GITHUB_OUTPUT
 
-      - name: Set up Node.js
+      - name: Set up Node.js for npm
         uses: actions/setup-node@v3
         if: steps.changed.outputs.package_changed == 'true'
         with:
@@ -34,11 +30,37 @@ jobs:
         if: steps.changed.outputs.package_changed == 'true'
         run: npm run pkg:preinstall
 
-      # - name: Build with TypeScript
-      #   run: cd package && npm run build
-
-      - name: Build with TypeScript and Publish to npm
-        if: steps.changed.outputs.package_changed == 'true' && github.event_name == 'push' && github.ref == 'refs/heads/main'
+      - name: Publish to npm
+        if: steps.changed.outputs.package_changed == 'true'
         run: npm run pkg:publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+
+      - name: Set up Node.js for GitHub Packages
+        uses: actions/setup-node@v3
+        if: steps.changed.outputs.package_changed == 'true'
+        with:
+          node-version: '20.x'
+          registry-url: 'https://npm.pkg.github.com'
+
+      - name: Publish to GitHub Packages
+        if: steps.changed.outputs.package_changed == 'true'
+        run: npm publish --registry=https://npm.pkg.github.com
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Get package version
+        id: version
+        if: steps.changed.outputs.package_changed == 'true'
+        run: echo "version=$(node -p 'require(\"./package.json\").version')" >> $GITHUB_OUTPUT
+
+      - name: Create GitHub Release
+        if: steps.changed.outputs.package_changed == 'true'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.version.outputs.version }}
+          name: Release v${{ steps.version.outputs.version }}
+          body: |
+            Published version v${{ steps.version.outputs.version}} to npm and GitHub Packages.
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
