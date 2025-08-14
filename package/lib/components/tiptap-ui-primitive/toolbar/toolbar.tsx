@@ -1,15 +1,19 @@
 "use client"
 
-import * as React from "react"
 import { Separator } from "@/components/tiptap-ui-primitive/separator"
 import "@/components/tiptap-ui-primitive/toolbar/toolbar.scss"
 import { cn } from "@/lib/tiptap-utils"
+import * as React from "react"
 
 type BaseProps = React.HTMLAttributes<HTMLDivElement>
 
-interface ToolbarProps extends BaseProps {
-  variant?: "floating" | "fixed"
-}
+export type ToolbarProps = BaseProps & ({
+  variant?: "floating"
+} | {
+  variant?: "fixed"
+} & {
+  position?: "top" | "bottom"
+})
 
 const mergeRefs = <T,>(
   refs: Array<React.Ref<T> | null | undefined>
@@ -19,7 +23,7 @@ const mergeRefs = <T,>(
       if (typeof ref === "function") {
         ref(value)
       } else if (ref && typeof ref === "object" && "current" in ref) {
-        ;(ref as { current: T | null }).current = value
+        ; (ref as { current: T | null }).current = value
       }
     })
   }
@@ -277,7 +281,9 @@ export const Toolbar = React.forwardRef<HTMLDivElement, ToolbarProps>(
         role="toolbar"
         aria-label="toolbar"
         data-variant={variant}
+        
         className={cn("tiptap-toolbar nexo-editor-toolbar", className)}
+        {...(variant === "fixed" && "position" in props ? { "data-position": props.position || "top" } : {})}
         {...props}
       >
         {children}

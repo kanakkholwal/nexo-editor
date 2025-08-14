@@ -8,9 +8,10 @@ import { Spacer } from "@/components/tiptap-ui-primitive/spacer";
 import {
   Toolbar,
   ToolbarGroup,
-  ToolbarSeparator,
+  
+  ToolbarSeparator
 } from "@/components/tiptap-ui-primitive/toolbar";
-
+import { ToolbarProps } from "@/components/tiptap-ui-primitive/toolbar";
 // --- Tiptap Node CSS ---
 import "@/components/tiptap-node/blockquote-node/blockquote-node.scss";
 import "@/components/tiptap-node/heading-node/heading-node.scss";
@@ -185,6 +186,7 @@ export interface NexoEditorProps {
   placeholder?: string
   imageUploadOptions?: ImageUploadNodeOptions
   id?: string
+  toolbarProps?: ToolbarProps
 }
 
 /** * NexoEditor is a simple editor component built with Tiptap.
@@ -193,7 +195,11 @@ export interface NexoEditorProps {
  * @returns {React.ReactNode} The rendered NexoEditor component.
  */
 
-export function NexoEditor({ content, onChange, extensions, imageUploadOptions, ssr = true, className, placeholder }: NexoEditorProps): React.ReactNode {
+export function NexoEditor({
+  content, onChange, extensions, imageUploadOptions, 
+  ssr = true, className, placeholder,
+  toolbarProps
+}: NexoEditorProps): React.ReactNode {
   const isMobile = useIsMobile()
   const [mobileView, setMobileView] = React.useState<
     "main" | "highlighter" | "link"
@@ -248,6 +254,10 @@ export function NexoEditor({ content, onChange, extensions, imageUploadOptions, 
         onChange?.(content)
       }
     },
+    onCreate: ({ editor }) => {
+      editor.commands?.focus()
+    },
+    autofocus: isMobile ? false : "end",
     enablePasteRules: true,
   })
 
@@ -263,30 +273,32 @@ export function NexoEditor({ content, onChange, extensions, imageUploadOptions, 
   useEffect(() => {
     if (editor && content && !isEqual(editor.getJSON(), content)) {
       editor.commands.setContent(content)
-      editor.commands?.focus()
     }
-    
+
   }, [content, editor])
   return (
     <div className={cn("nexo-editor-wrapper", className)}>
       <EditorContext.Provider value={{ editor }}>
         <Toolbar
           ref={toolbarRef}
+          role="toolbar"
+          aria-label="editor toolbar"
 
+          {...toolbarProps}
           className={cn(
             isMobile && "nexo-editor-mobile-toolbar",
             // isScrolling && "nexo-editor-scrolling"
           )}
-          // style={{
-          //   ...(isScrolling && isMobile
-          //     ? { opacity: 0, transition: "opacity 0.3s ease-in-out" }
-          //     : {}),
-          //   ...(isMobile
-          //     ? {
-          //       bottom: `calc(100% - ${windowSize.height - rect.y}px)`,
-          //     }
-          //     : {}),
-          // }}
+        // style={{
+        //   ...(isScrolling && isMobile
+        //     ? { opacity: 0, transition: "opacity 0.3s ease-in-out" }
+        //     : {}),
+        //   ...(isMobile
+        //     ? {
+        //       bottom: `calc(100% - ${windowSize.height - rect.y}px)`,
+        //     }
+        //     : {}),
+        // }}
         >
           {mobileView === "main" ? (
             <MainToolbarContent
