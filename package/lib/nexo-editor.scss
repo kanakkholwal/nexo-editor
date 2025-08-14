@@ -54,6 +54,7 @@
 @media screen and (max-width: 480px) {
   .nexo-editor-content .tiptap.ProseMirror.nexo-editor {
     padding: 1rem 1.5rem 30vh;
+   margin-top: calc(var(--tt-toolbar-height) + var(--tt-safe-area-bottom));
   }
 }
 .ProseMirror pre {

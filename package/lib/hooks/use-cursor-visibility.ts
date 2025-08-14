@@ -1,6 +1,6 @@
-import * as React from "react"
-import type { Editor } from "@tiptap/react"
 import { useWindowSize } from "@/hooks/use-window-size"
+import type { Editor } from "@tiptap/react"
+import * as React from "react"
 
 export interface CursorVisibilityOptions {
   /**
@@ -72,10 +72,10 @@ export function useCursorVisibility({
     const ensureCursorVisibility = () => {
       if (!editor) return
 
+      
+      if (!editor?.view?.["hasFocus"]) return
       const { state, view } = editor
-
-      if (!view.hasFocus()) return
-
+      
       // Get current cursor position coordinates
       const { from } = state.selection
       const cursorCoords = view.coordsAtPos(from)
@@ -106,8 +106,9 @@ export function useCursorVisibility({
         }
       }
     }
-
-    ensureCursorVisibility()
+    if (editor && editor?.view) {
+      ensureCursorVisibility()
+    }
   }, [editor, overlayHeight, windowHeight, rect.height])
 
   return rect

@@ -47,14 +47,14 @@ const CodeBlockNodeComponent = (props: NodeViewProps) => {
                         >
                             <Languages className="tiptap-button-icon" />
                             <span className="tiptap-button-text">{selectedLanguage.label}</span>
-                            <ChevronDownIcon className="tiptap-button-icon  tiptap-button-text" />
+                            <ChevronDownIcon className="tiptap-button-icon tiptap-button-text" />
                         </Button>
                     </DropdownMenuTrigger>
 
                     <DropdownMenuContent align="start" className="tiptap-dropdown-menu" portal={true}>
                         <Card>
                             <CardBody>
-                                <ButtonGroup >
+                                <ButtonGroup>
                                     {languagesList.map((lang) => (
                                         <DropdownMenuItem
                                             key={lang.id}

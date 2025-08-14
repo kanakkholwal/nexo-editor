@@ -43,6 +43,7 @@ export default defineConfig({
         '@tiptap/extension-superscript',
         '@tiptap/extension-text-align',
         '@tiptap/extension-typography',
+        '@tiptap/extension-code-block',
         '@tiptap/static-renderer',
         '@floating-ui/react',
         '@tiptap/extension-mention',
@@ -79,7 +80,8 @@ export default defineConfig({
           '@tiptap/extension-typography': 'TiptapExtensionTypography',
           '@tiptap/static-renderer': 'TiptapStaticRenderer',
           '@tiptap/extension-mention':'TiptapExtensionMention',
-          '@tiptap/extension-suggestion':'TiptapExtensionSuggestion'
+          '@tiptap/extension-suggestion':'TiptapExtensionSuggestion',
+          '@tiptap/extension-code-block':'TiptapExtensionCodeblock'
 
         },
       },

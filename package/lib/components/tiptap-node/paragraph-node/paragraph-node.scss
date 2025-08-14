@@ -143,7 +143,7 @@
      ===================== */
 .tiptap.ProseMirror {
   a {
-    color: var(--link-text-color);
+    color: var(--primary,var(--link-text-color));
     text-decoration: underline;
   }
 }

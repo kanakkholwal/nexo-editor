@@ -1,11 +1,12 @@
 import { Content } from "@tiptap/react";
-import { handleImageUpload, MAX_FILE_SIZE, NexoEditor } from "nexo-editor";
+import { handleImageUpload, MAX_FILE_SIZE } from "nexo-editor";
 import "nexo-editor/index.css";
-import { useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { IoLogoGithub } from "react-icons/io";
 import { IoDocumentTextOutline } from "react-icons/io5";
 import demoContent from "./data/content.json";
 
+import { ErrorBoundary } from "react-error-boundary";
 import { CiImport } from "react-icons/ci";
 
 import { ArrowRightLeft, ArrowUpRight, LoaderCircle } from "lucide-react";
@@ -13,10 +14,7 @@ import { createHighlighter } from 'shiki';
 import { Button } from "./components/ui/button";
 import { ThemeCustomizer, ThemeToggler } from "./theme-customizer";
 
-const highlighter = await createHighlighter({
-    themes: ['github-dark', 'github-light'],
-    langs: ['javascript', 'typescript', 'json', 'html', 'css', 'markdown', 'jsx', 'tsx'],
-})
+const NexoEditor = lazy(() => import("nexo-editor").then(module => ({ default: module.NexoEditor })));
 
 export default function App() {
     const [content, setContent] = useState<Content>({
@@ -38,76 +36,97 @@ export default function App() {
 
 
 
-    return <main className="min-h-screen p-6 max-w-7xl mx-auto space-y-5" id="preview">
-        <div className="header mb-4 flex items-center justify-between flex-wrap gap-4">
-            <div className="flex-1 whitespace-nowrap text-left">
-                Nexo Editor
+    return <div className="min-h-screen max-w-7xl mx-auto space-y-5" id="preview">
+        <section id="header" className="p-6">
+
+            <div className="header mb-4 flex items-center justify-between flex-wrap gap-4">
+                <div className="flex-1 whitespace-nowrap text-left">
+                    Nexo Editor
+                </div>
+                <div className="flex items-center gap-2 justify-center">
+                    <ThemeToggler />
+                    <Button variant="ghost" size="sm" asChild>
+                        <a href="https://docs.nexonauts.com/packages/nexo-editor" target="_blank" rel="noopener noreferrer">
+                            <IoDocumentTextOutline />
+                            Docs
+                            <ArrowUpRight />
+                        </a>
+                    </Button>
+                    <Button variant="ghost" size="sm" asChild>
+                        <a href="https://github.com/kanakkholwal/nexo-editor" target="_blank" rel="noopener noreferrer">
+                            <IoLogoGithub />
+                            Star us on GitHub
+                            <span className="sr-only">Star us on GitHub</span>
+                        </a>
+                    </Button>
+
+                </div>
             </div>
-            <div className="flex items-center gap-2 justify-center">
-                <ThemeToggler />
-                <Button variant="ghost" size="sm" asChild>
-                    <a href="https://docs.nexonauts.com/packages/nexo-editor" target="_blank" rel="noopener noreferrer">
-                        <IoDocumentTextOutline />
-                        Docs
-                        <ArrowUpRight />
-                    </a>
-                </Button>
-                <Button variant="ghost" size="sm" asChild>
-                    <a href="https://github.com/kanakkholwal/nexo-editor" target="_blank" rel="noopener noreferrer">
-                        <IoLogoGithub />
-                        Star us on GitHub
-                        <span className="sr-only">Star us on GitHub</span>
-                    </a>
-                </Button>
+            <div className="my-4">
+                <p className="text-sm text-muted-foreground">
+                    This is a demo of the Nexo Editor. You can try it out and customize the
+                    themes using the Theme Customizer below (works with Shadcn UI CSS variables).
+                </p>
+                <div className="mt-4 flex items-center gap-2 flex-wrap">
 
+                    <Button variant="default_light" size="sm" onClick={() => setContent(demoContent)}>
+                        <CiImport />
+                        Load Demo Content
+                    </Button>
+                    <Button variant="glass" size="sm" onClick={() => {
+                        setMode(mode === "preview" ? "code" : "preview");
+                    }}>
+                        <ArrowRightLeft />
+                        Switch to {mode === "preview" ? "Code" : "Preview"}
+                    </Button>
+
+                    <ThemeCustomizer />
+                </div>
             </div>
-        </div>
-        <div className="my-4">
-            <p className="text-sm text-muted-foreground">
-                This is a demo of the Nexo Editor. You can try it out and customize the
-                themes using the Theme Customizer below (works with Shadcn UI CSS variables).
-            </p>
-            <div className="mt-4 flex items-center gap-2">
+        </section>
+        <main id="editor" className="flex-1 min-h-[400px]">
+            <style id="nexo-editor-preview-style"/>
+            {mode === "preview" ? (<Suspense fallback={
+                <div className="flex items-center justify-center h-full min-h-96 border rounded-md card">
+                    <LoaderCircle className="animate-spin size-10 text-primary" />
+                </div>
+            }>
+                <ErrorBoundary fallback={
+                    <div className="text-center  h-96 flex flex-col items-center justify-center w-full border rounded-md card">
+                        <IoDocumentTextOutline className="size-8 mb-2 text-red-500" />
+                        <h2 className="text-lg font-semibold mb-2 text-red-500">Error Loading Editor</h2>
+                        <p className="text-sm text-red-300">Something went wrong while loading the editor.</p>
+                    </div>
+                }>
 
-                <Button variant="default_light" size="sm" onClick={() => setContent(demoContent)}>
-                    <CiImport />
-                    Load Demo Content
-                </Button>
-                <Button variant="glass" size="sm" onClick={() => {
-                    setMode(mode === "preview" ? "code" : "preview");
-                }}>
-                    <ArrowRightLeft />
-                    Switch to {mode === "preview" ? "Code" : "Preview"}
-                </Button>
-
-                <ThemeCustomizer />
+                    <NexoEditor
+                        content={content}
+                        onChange={(content) => setContent(content)}
+                        ssr={false}
+                        imageUploadOptions={{
+                            accept: "image/*",
+                            maxSize: MAX_FILE_SIZE,
+                            limit: 3,
+                            onError: (error) => console.error("Upload failed:", error),
+                            upload: handleImageUpload,
+                        }}
+                    />
+                </ErrorBoundary>
+            </Suspense>
+            ) : (<div className="prose prose-sm prose-gray dark:prose-invert p-6">
+                <RenderCodeBlock content={content} />
             </div>
-        </div>
-        <style id="nexo-editor-preview-style">
-
-        </style>
-        {mode === "preview" ? (
-            <NexoEditor
-                content={content}
-                onChange={(content) => setContent(content)}
-                ssr={false}
-                imageUploadOptions={{
-                    accept: "image/*",
-                    maxSize: MAX_FILE_SIZE,
-                    limit: 3,
-                    onError: (error) => console.error("Upload failed:", error),
-                    upload: handleImageUpload,
-                }}
-            />
-        ) : (
-            <RenderCodeBlock content={content} />
-        )}
-
-    </main>
+            )}
+        </main>
+    </div>
 
 
 }
 
+const highlighter = await createHighlighter({
+    themes: ['github-dark', 'github-light'],
+    langs: ['javascript', 'typescript', 'json', 'html', 'css', 'markdown', 'jsx', 'tsx'],
+})
 function RenderCodeBlock({ content }: { content: Content }) {
     const [loading, setLoading] = useState(true);
     const [code, setCode] = useState<string>("");
@@ -119,7 +138,7 @@ function RenderCodeBlock({ content }: { content: Content }) {
                     lang: 'json', themes: {
                         dark: 'github-dark',
                         light: 'github-light'
-                        
+
                     },
                     defaultColor: 'light-dark()',
                 });
@@ -135,7 +154,7 @@ function RenderCodeBlock({ content }: { content: Content }) {
     }
 
     return (
-        <div className="sh-lang--json font-mono prose prose-gray dark:prose-invert [&>pre]:p-4 [&>pre]:rounded-md [&>pre]:border bg-card"
+        <div className="sh-lang--json font-mono [&>pre]:p-4 [&>pre]:rounded-md [&>pre]:border bg-card"
             dangerouslySetInnerHTML={{ __html: code }}
         />
     );

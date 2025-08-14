@@ -11,12 +11,13 @@ import {
   ToolbarSeparator,
 } from "@/components/tiptap-ui-primitive/toolbar";
 
-// --- Tiptap Node ---
+// --- Tiptap Node CSS ---
 import "@/components/tiptap-node/blockquote-node/blockquote-node.scss";
 import "@/components/tiptap-node/heading-node/heading-node.scss";
+import "@/components/tiptap-node/horizontal-rule-node/horizontal-rule-node.scss";
+import "@/components/tiptap-node/image-node/image-node.scss";
 import "@/components/tiptap-node/list-node/list-node.scss";
 import "@/components/tiptap-node/paragraph-node/paragraph-node.scss";
-
 // --- Tiptap UI ---
 import { ImageUploadNode, ImageUploadNodeOptions } from "@/components/tiptap-node/image-upload-node/image-upload-node-extension";
 import { BlockquoteButton } from "@/components/tiptap-ui/blockquote-button";
@@ -45,10 +46,7 @@ import { HighlighterIcon } from "@/components/tiptap-icons/highlighter-icon";
 import { LinkIcon } from "@/components/tiptap-icons/link-icon";
 
 // --- Hooks ---
-import { useCursorVisibility } from "@/hooks/use-cursor-visibility";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { useScrolling } from "@/hooks/use-scrolling";
-import { useWindowSize } from "@/hooks/use-window-size";
 
 // --- Components ---
 // import { ThemeToggle } from "@/components/tiptap-extended/theme-toggle"
@@ -84,7 +82,7 @@ const MainToolbarContent = ({
       <ToolbarSeparator />
 
       <ToolbarGroup>
-        <HeadingDropdownMenu levels={[1, 2, 3, 4, 5, 6]} portal={isMobile} />
+        <HeadingDropdownMenu portal={isMobile} />
         <ListDropdownMenu
           types={["bulletList", "orderedList", "taskList"]}
           portal={isMobile}
@@ -197,7 +195,6 @@ export interface NexoEditorProps {
 
 export function NexoEditor({ content, onChange, extensions, imageUploadOptions, ssr = true, className, placeholder }: NexoEditorProps): React.ReactNode {
   const isMobile = useIsMobile()
-  const windowSize = useWindowSize()
   const [mobileView, setMobileView] = React.useState<
     "main" | "highlighter" | "link"
   >("main")
@@ -254,11 +251,8 @@ export function NexoEditor({ content, onChange, extensions, imageUploadOptions, 
     enablePasteRules: true,
   })
 
-  const isScrolling = useScrolling()
-  const rect = useCursorVisibility({
-    editor,
-    overlayHeight: toolbarRef.current?.getBoundingClientRect().height ?? 0,
-  })
+  // const isScrolling = useScrolling()
+
 
   useEffect(() => {
     if (!isMobile && mobileView !== "main") {
@@ -269,23 +263,30 @@ export function NexoEditor({ content, onChange, extensions, imageUploadOptions, 
   useEffect(() => {
     if (editor && content && !isEqual(editor.getJSON(), content)) {
       editor.commands.setContent(content)
+      editor.commands?.focus()
     }
+    
   }, [content, editor])
   return (
     <div className={cn("nexo-editor-wrapper", className)}>
       <EditorContext.Provider value={{ editor }}>
         <Toolbar
           ref={toolbarRef}
-          style={{
-            ...(isScrolling && isMobile
-              ? { opacity: 0, transition: "opacity 0.3s ease-in-out" }
-              : {}),
-            ...(isMobile
-              ? {
-                bottom: `calc(100% - ${windowSize.height - rect.y}px)`,
-              }
-              : {}),
-          }}
+
+          className={cn(
+            isMobile && "nexo-editor-mobile-toolbar",
+            // isScrolling && "nexo-editor-scrolling"
+          )}
+          // style={{
+          //   ...(isScrolling && isMobile
+          //     ? { opacity: 0, transition: "opacity 0.3s ease-in-out" }
+          //     : {}),
+          //   ...(isMobile
+          //     ? {
+          //       bottom: `calc(100% - ${windowSize.height - rect.y}px)`,
+          //     }
+          //     : {}),
+          // }}
         >
           {mobileView === "main" ? (
             <MainToolbarContent

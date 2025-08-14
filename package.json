@@ -13,7 +13,7 @@
     "pkg:treemap": "npm run treemap --workspace=nexo-editor",
     "demo:dev": "npm run dev --workspace=demo",
     "link": "cd package && npm link && cd ../demo && npm link nexo-editor",
-    "unlink": "cd package && npm unlink nexo-editor && cd ../demo && npm unlink nexo-editor"
+    "unlink": "npm unlink nexo-editor"
   },
   "devDependencies": {
     "@changesets/cli": "^2.29.5",

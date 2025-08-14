@@ -17,8 +17,7 @@ import TiptapHorizontalRule from "@tiptap/extension-horizontal-rule"
 
 // --- Tiptap UI CSS---
 import CodeBlock from "@/components/tiptap-node/code-block-node/code-block"
-import "@/components/tiptap-node/horizontal-rule-node/horizontal-rule-node.scss"
-import "@/components/tiptap-node/image-node/image-node.scss"
+
 import suggestions from "@/lib/mention-utils"
 
 /**
@@ -38,6 +37,7 @@ export const extensionsMap = {
             class: 'drop-cursor',
         },
         trailingNode: false,
+        codeBlock: false,
     }),
     TiptapHorizontalRule,
     TextAlign: TextAlign.configure({ types: ["heading", "paragraph"] }),
@@ -57,7 +57,14 @@ export const extensionsMap = {
             deleteTriggerWithBackspace: true,
             suggestions,
         }),
-    CodeBlock
+    CodeBlock: CodeBlock.configure({
+        exitOnTripleEnter: true,
+        exitOnArrowDown: true,
+        defaultLanguage: 'javascript',
+        HTMLAttributes: {
+            class: 'code-block-node',
+        },
+    }),
 }
 
 /** * Array of default Tiptap extensions used in the editor.

@@ -18,7 +18,6 @@
   outline: none;
   transform-origin: var(--radix-dropdown-menu-content-transform-origin);
   max-height: var(--radix-dropdown-menu-content-available-height);
-
   > * {
     max-height: var(--radix-dropdown-menu-content-available-height);
   }
