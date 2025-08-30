@@ -1,9 +1,12 @@
-name: Build and Publish to npm & GitHub Packages
+name: Build and Publish to NPM Packages
 
 on:
   push:
     branches:
       - main
+    tags:
+      - 'v*.*.*'
+
 
 jobs:
   build:
@@ -49,18 +52,9 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Get package version
-        id: version
-        if: steps.changed.outputs.package_changed == 'true'
-        run: echo "version=$(node -p 'require(\"./package.json\").version')" >> $GITHUB_OUTPUT
-
       - name: Create GitHub Release
-        if: steps.changed.outputs.package_changed == 'true'
-        uses: softprops/action-gh-release@v2
+        uses: changesets/action@v1
         with:
-          tag_name: v${{ steps.version.outputs.version }}
-          name: Release v${{ steps.version.outputs.version }}
-          body: |
-            Published version v${{ steps.version.outputs.version}} to npm and GitHub Packages.
+          publish: 'npx changeset publish'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
