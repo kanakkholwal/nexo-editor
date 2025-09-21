@@ -4,6 +4,8 @@ on:
   push:
     tags:
       - 'v*.*.*'
+permissions:
+  contents: write
 
 
 jobs:
@@ -46,7 +48,7 @@ jobs:
 
       - name: Publish to GitHub Packages
         if: steps.changed.outputs.package_changed == 'true'
-        run: npm publish --registry=https://npm.pkg.github.com
+        run: cd package && npm publish --registry=https://npm.pkg.github.com
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
