@@ -4,55 +4,59 @@ on:
   push:
     tags:
       - 'v*.*.*'
+  workflow_dispatch:
+
 permissions:
   contents: write
 
-
 jobs:
-  build:
-    name: Release
+  release:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: 🔍 Detect changed projects
+      - name: Detect changes in /package
         id: changed
         run: |
-          git diff --quiet HEAD^ HEAD ./package || echo "package_changed=true" >> $GITHUB_OUTPUT
+          if ! git diff --quiet HEAD^ HEAD ./package; then
+            echo "package_changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "package_changed=false" >> $GITHUB_OUTPUT
+          fi
 
-      - name: Set up Node.js for npm
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         if: steps.changed.outputs.package_changed == 'true'
         with:
           node-version: '20.x'
-          registry-url: 'https://registry.npmjs.org'
+          cache: 'npm'
 
       - name: Install dependencies
         if: steps.changed.outputs.package_changed == 'true'
-        run: npm run pkg:preinstall
+        run: |
+          cd package
+          npm run install
 
-      - name: Publish to npm
+      - name: Publish to NPM
         if: steps.changed.outputs.package_changed == 'true'
-        run: npm run pkg:publish
+        run: |
+          cd package
+          npm run publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
 
-      - name: Set up Node.js for GitHub Packages
-        uses: actions/setup-node@v3
-        if: steps.changed.outputs.package_changed == 'true'
-        with:
-          node-version: '20.x'
-          registry-url: 'https://npm.pkg.github.com'
-
       - name: Publish to GitHub Packages
         if: steps.changed.outputs.package_changed == 'true'
-        run: cd package && npm publish --registry=https://npm.pkg.github.com
+        run: |
+          cd package
+          npm publish --registry=https://npm.pkg.github.com
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create GitHub Release
+        if: steps.changed.outputs.package_changed == 'true'
         uses: changesets/action@v1
         with:
           publish: 'npx changeset publish'
