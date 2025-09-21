@@ -1,3 +1,4 @@
+"use client";
 import { Content, EditorContent, EditorContext, Extensions, useEditor } from "@tiptap/react";
 import isEqual from 'lodash.isequal';
 import * as React from "react";
