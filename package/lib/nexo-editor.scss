@@ -1,5 +1,3 @@
-
-
 .nexo-editor-wrapper {
   position: relative;
   display: flex;
@@ -12,7 +10,7 @@
   }
 }
 
-.nexo-editor-wrapper  ::-webkit-scrollbar {
+.nexo-editor-wrapper ::-webkit-scrollbar {
   width: 0.25rem;
 }
 
@@ -51,12 +49,13 @@
   padding: 3rem 3rem 30vh;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 660px) {
   .nexo-editor-content .tiptap.ProseMirror.nexo-editor {
     padding: 1rem 1.5rem 30vh;
-   margin-top: calc(var(--tt-toolbar-height) + var(--tt-safe-area-bottom));
+    margin-top: calc(var(--tt-toolbar-height) + var(--tt-safe-area-bottom));
   }
 }
+
 .ProseMirror pre {
-    white-space: pre-wrap;
+  white-space: pre-wrap;
 }

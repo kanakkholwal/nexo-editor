@@ -1,7 +1,7 @@
-import * as React from "react"
-import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu"
-import { cn } from "@/lib/tiptap-utils"
 import "@/components/tiptap-ui-primitive/dropdown-menu/dropdown-menu.scss"
+import { cn } from "@/lib/tiptap-utils"
+import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu"
+import * as React from "react"
 
 function DropdownMenu({
   ...props
@@ -67,7 +67,7 @@ const DropdownMenuContent = React.forwardRef<
       ref={ref}
       sideOffset={sideOffset}
       onCloseAutoFocus={(e) => e.preventDefault()}
-      className={cn("tiptap-dropdown-menu bg-popover", className)}
+      className={cn("tiptap-dropdown-menu", className)}
       {...props}
     />
   )
@@ -83,14 +83,7 @@ const DropdownMenuContent = React.forwardRef<
 DropdownMenuContent.displayName = DropdownMenuPrimitive.Content.displayName
 
 export {
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuGroup,
-  DropdownMenuSub,
-  DropdownMenuPortal,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
-  DropdownMenuRadioGroup,
+  DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuPortal, DropdownMenuRadioGroup, DropdownMenuSub, DropdownMenuSubContent,
+  DropdownMenuSubTrigger, DropdownMenuTrigger
 }
+

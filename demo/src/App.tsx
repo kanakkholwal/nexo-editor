@@ -1,9 +1,9 @@
 import { Content, JSONContent } from "@tiptap/react";
 import {
-    defaultExtensions,
-    handleImageUpload,
-    MAX_FILE_SIZE,
-    renderToMarkdown,
+  defaultExtensions,
+  handleImageUpload,
+  MAX_FILE_SIZE,
+  renderToMarkdown,
 } from "nexo-editor";
 import "nexo-editor/index.css";
 import { lazy, Suspense, useEffect, useState } from "react";
@@ -40,6 +40,7 @@ export default function App() {
   });
 
   const [mode, setMode] = useState<"preview" | "code">("preview");
+  const [readOnly, setReadOnly] = useState(false);
 
   // Convert editor content to Markdown string
   const toMarkdown = (c: Content): string => {
@@ -107,12 +108,12 @@ export default function App() {
           </div>
         </div>
 
-<p className="text-sm text-muted-foreground">
-  Explore the Nexo Editor — a lightweight, customizable React Rich Text and Markdown editor powered by TipTap. 
-  Easily switch between <strong>Preview</strong> and <strong>Code</strong> views, customize themes with 
-  Shadcn UI variables, upload images, and even <strong>download your content as a Markdown file</strong>. 
-  Perfect for building modern React apps, CMS editors, or documentation tools with full SSR support.
-</p>
+        <p className="text-sm text-muted-foreground">
+          Explore the Nexo Editor — a lightweight, customizable React Rich Text and Markdown editor powered by TipTap.
+          Easily switch between <strong>Preview</strong> and <strong>Code</strong> views, customize themes with
+          Shadcn UI variables, upload images, and even <strong>download your content as a Markdown file</strong>.
+          Perfect for building modern React apps, CMS editors, or documentation tools with full SSR support.
+        </p>
 
         {/* Action Buttons */}
         <div className="mt-4 flex items-center gap-2 flex-wrap">
@@ -125,7 +126,14 @@ export default function App() {
             <ArrowRightLeft />
             Switch to {mode === "preview" ? "Code" : "Preview"}
           </Button>
+          <Button variant="outline" size="sm" onClick={() => setReadOnly(!readOnly)}>
+            {readOnly ? "Enable" : "Disable"} Editing
+          </Button>
 
+          <Button variant="outline" size="sm" onClick={downloadMarkdown}>
+            <IoDocumentTextOutline />
+            Download as Markdown
+          </Button>
           <Button variant="outline" size="sm" onClick={downloadMarkdown}>
             <IoDocumentTextOutline />
             Download as Markdown
@@ -170,6 +178,7 @@ export default function App() {
                   onError: (err) => console.error("Upload failed:", err),
                   upload: handleImageUpload,
                 }}
+                readOnly={readOnly}
               />
             </ErrorBoundary>
           </Suspense>

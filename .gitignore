@@ -11,6 +11,7 @@ node_modules
 bun.lockb
 package-lock.json
 .turbo
+.kiro
 dist
 dist-ssr
 *.local

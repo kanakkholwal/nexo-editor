@@ -186,6 +186,7 @@ export interface NexoEditorProps {
   imageUploadOptions?: ImageUploadNodeOptions
   id?: string
   toolbarProps?: ToolbarProps
+  readOnly?: boolean
 }
 
 /** * NexoEditor is a simple editor component built with Tiptap.
@@ -197,6 +198,7 @@ export interface NexoEditorProps {
 export function NexoEditor({
   content, onChange, extensions, imageUploadOptions,
   ssr = true, className, placeholder,
+  readOnly = false,
   toolbarProps
 }: NexoEditorProps): React.ReactNode {
   const isMobile = useIsMobile()
@@ -219,7 +221,7 @@ export function NexoEditor({
     },
     extensions: [
       ...(extensions ? [...extensions] : [...defaultExtensions]),
-      ...(imageUploadOptions
+      ...((imageUploadOptions && !readOnly)
         ? [
           ImageUploadNode.configure({
             accept: "image/*",
@@ -257,7 +259,8 @@ export function NexoEditor({
     },
     autofocus: isMobile ? false : "end",
     enablePasteRules: true,
-  })
+    editable: !readOnly,
+  },[readOnly])
 
   // const isScrolling = useScrolling()
 
@@ -277,7 +280,7 @@ export function NexoEditor({
   return (
     <div className={cn("nexo-editor-wrapper", className)}>
       <EditorContext.Provider value={{ editor }}>
-        <Toolbar
+        {!readOnly && (<Toolbar
           ref={toolbarRef}
           role="toolbar"
           aria-label="editor toolbar"
@@ -310,7 +313,7 @@ export function NexoEditor({
               onBack={() => setMobileView("main")}
             />
           )}
-        </Toolbar>
+        </Toolbar>)}
 
         <EditorContent
           editor={editor}
