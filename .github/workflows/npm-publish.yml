@@ -37,13 +37,13 @@ jobs:
         if: steps.changed.outputs.package_changed == 'true'
         run: |
           cd package
-          npm run install
+          npm install
 
       - name: Publish to NPM
         if: steps.changed.outputs.package_changed == 'true'
         run: |
           cd package
-          npm run publish
+          npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
 
