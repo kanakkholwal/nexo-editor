@@ -1,6 +1,6 @@
 {
   "name": "nexo-editor",
-  "version": "2.3.1",
+  "version": "2.3.2",
   "type": "module",
   "main": "./dist/index.umd.js",
   "module": "./dist/index.es.js",
@@ -51,7 +51,10 @@
     "directory": "dist"
   },
   "homepage": "https://kanakkholwal.github.io/nexo-editor",
-  "repository": "https://github.com/kanakkholwal/nexo-editor",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kanakkholwal/nexo-editor.git"
+  },
   "bugs": "https://github.com/kanakkholwal/nexo-editor/issues",
   "author": "Kanak Kholwal (@kanakkholwal)",
   "keywords": [
